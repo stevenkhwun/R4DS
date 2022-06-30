@@ -368,11 +368,56 @@ pre code {
 </div>
 
 
-<div id="prerequisite" class="section level2">
-<h2>Prerequisite</h2>
+<div id="interface-with-github-using-rstudio" class="section level1">
+<h1>Interface with GitHub using RStudio</h1>
+<div id="procedures" class="section level3">
+<h3>Procedures</h3>
+<p>The following steps are needed to setup interface with GitHub using
+RStudio. The first step is needed to be set up once. The second step is
+needed when a new repository is created. (Noted: In order to create a
+nested list, two tabs or 4 spaces are needed to indent for every level.
+In order to add a blank line, add two spaces at the end of the previous
+paragraph and followed by the <code>&lt;br /&gt;</code> command.)</p>
 <ol style="list-style-type: decimal">
+<li>One time setup
+<ol style="list-style-type: lower-roman">
 <li>Install Git on Windows</li>
 <li>Create Github account at <a href="http://github.com" class="uri">http://github.com</a></li>
+<li>Use the <code>usethis</code> package to configure git with global
+commands.</li>
+</ol>
+<pre class="r"><code>install.packages(&quot;usethis&quot;)
+library(usethis)
+use_git_config(user.name = &quot;stevenkhwun&quot;, user.email =             &quot;stevenkhwun@gmail.com&quot;)</code></pre>
+<ol start="4" style="list-style-type: lower-roman">
+<li>In RStudio, navigate to: Tools &gt; Global Options &gt; Git/SVN and
+check whether the filepath is found in “<strong>Git
+executable</strong>”.</li>
+<li>Create a <code>GitHub</code> folder in the local machine to keep all
+the GitHub repositories.<br />
+<br /></li>
+</ol></li>
+<li>Create a repository on Github.com
+<ol style="list-style-type: lower-roman">
+<li>Go to the account on github.com and click “New repository”.</li>
+<li>Give a simple name and add a description</li>
+<li>Public or private (private available with paid or education)</li>
+<li>Select “Initialize this repository with a README.</li>
+<li>Ignore other selection and click “Create repository”.<br />
+<br /></li>
+</ol></li>
+<li>Clone your repository using RStudio
+<ol style="list-style-type: lower-roman">
+<li>Copy the web address of the repository you want to clone.</li>
+<li>From RStudio, go to New Project (in the File menu).</li>
+<li>Select Version Control</li>
+<li>Select Git</li>
+<li>Paste it in the Repository URL field, and click <code>tab</code> to
+autofill the Project Directory name. Make sure to keep the Project
+Directory Name <strong>THE SAME</strong> as the repository name from the
+URL.</li>
+<li>Click <code>Create Project</code>.</li>
+</ol></li>
 </ol>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       
@@ -390,6 +435,88 @@ pre code {
 <p>Note that the <code>echo = FALSE</code> parameter was added to the
 code chunk to prevent printing of the R code that generated the
 plot.</p>
+List entries start with the command.
+<p>Individual entries are indicated with a black dot, a so-called
+bullet.</p>
+<ol style="list-style-type: decimal">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3
+<ul>
+<li>Item 3a</li>
+<li>Item 3b</li>
+</ul></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>First Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+<tr class="even">
+<td>Content Cell</td>
+<td>Content Cell</td>
+</tr>
+</tbody>
+</table>
+<p>Reference Style Links and Images</p>
+<pre class="r"><code>knitr::kable(iris[1:5, ], caption = &#39;A caption&#39;)</code></pre>
+<table>
+<caption>A caption</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
