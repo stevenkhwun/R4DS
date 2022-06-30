@@ -1,9 +1,9 @@
 ---
 title: "Setup Git & GitHub"
 output:
-  html_document: default
-  word_document: default
   pdf_document: default
+  word_document: default
+  html_document: default
 date: '2022-06-28'
 ---
 
@@ -25,7 +25,7 @@ The following steps are needed to setup interface with GitHub using RStudio. The
     ```r
     install.packages("usethis")
     library(usethis)
-    use_git_config(user.name = "stevenkhwun", user.email =             "stevenkhwun@gmail.com")
+    use_git_config(user.name = "stevenkhwun", user.email = "stevenkhwun@gmail.com")
     ```
 
     iv.   In RStudio, navigate to: Tools > Global Options > Git/SVN and check whether the filepath is found in "**Git executable**".
@@ -60,30 +60,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-\item List entries start with the \verb|\item| command.
-\item Individual entries are indicated with a black dot, a so-called bullet.
 
-
-
-\begin{enumerate}
-  \item Items are numbered automatically.
-  \item The numbers start at 1 with each use of the \texttt{enumerate} environment.
-  \item Another entry in the list
-\end{enumerate}
-
-
-\begin{itemize}
-  \item List entries start with the \verb|\item| command.
-  \item Individual entries are indicated with a black dot, a so-called bullet.
-  \item The text in the entries may be of any length.
-\end{itemize}
-
-
-1. Item 1
-2. Item 2
-3. Item 3
-    + Item 3a
-    + Item 3b
 
 First Header  | Second Header
 ------------- | -------------
