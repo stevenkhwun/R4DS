@@ -3,19 +3,18 @@ title: 'Visualizing: `ggplot2`'
 author: "AW"
 date: '2022-07-01'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## The package `ggplot2`
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+We are going to be using the package `ggplot2`, which is actually bundled into a huge package called `tidyverse`. We will install `tidyverse` now, and use a few functions from the packages within. Also, check out tidyverse.org/.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r tidyverse, eval=FALSE}
 ## from CRAN:
@@ -63,13 +62,14 @@ mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-tra
 This dataframe is already in a long format where all rows are an observation and all columns are variables. Among the variables in `ca` are:
 
 1. `region`, US region where park is located.
-2. `visitors`, the annual visitation for each year
+2. `visitors`, the annual visitation for each `year`
+3. `park_name`, the name of the national park
 
 To build a ggplot, we need to:
 
 * use the `ggplot()` function and bind the plot to a specific data frame using the data argument
-* add `geoms` – graphical representation of the data in the plot (points, lines, bars). `ggplot2` offers many different `geoms`; we will use some common ones today, including: * `geom_point()` for scatter plots, dot plots, etc. * `geom_bar()` for bar charts * `geom_line()` for trend lines, time-series, etc.  
-<br />
+* add `geoms` – graphical representation of the data in the plot (points, lines, bars). `ggplot2` offers many different `geoms`; we will use some common ones today, including: * `geom_point()` for scatter plots, dot plots, etc. * `geom_bar()` for bar charts * `geom_line()` for trend lines, time-series, etc.
+
 To add a `geom` to the plot use `+` operator. Because we have two continuous variables,
 let’s use `geom_point()` first and then assign x and y aesthetics (`aes`):
 
@@ -77,4 +77,48 @@ let’s use `geom_point()` first and then assign x and y aesthetics (`aes`):
 ggplot(data = ca) + 
   geom_point(aes(x = year, y = visitors))
 ```
+
+This isn’t necessarily a useful way to look at the data. We can distinguish each park by added the color argument to the `aes`:
+
+```{r}
+ggplot(data = ca) +
+    geom_point(aes(x = year, y = visitors, color = park_name))
+```
+
+##### Customizing plots
+
+Now, let’s capitalize the x and y axis labels and add a main title to the figure. I also like to remove that standard gray background using a different `theme`. Many themes come built into the `ggplot2` package. My preference is `theme_bw()` but once you start typing `theme_` a list of options will pop up. The last thing I’m going to do is remove the legend title.
+
+```{r}
+ggplot(data = ca) +
+    geom_point(aes(x = year, y = visitors, color = park_name)) +
+    labs(x = "Year",
+       y = "Visitation",
+       title = "California National Park Visitation") +
+    theme_bw() +
+    theme(legend.title=element_blank())
+```
+
+#### Faceting
+
+`ggplot` has a special technique called **faceting** that allows the user to split one plot into multiple plots based on data in the dataset. We will use it to make a plot of park visitation by state:
+
+```{r}
+ggplot(data = se) +
+    geom_point(aes(x = year, y = visitors)) +
+    facet_wrap(~ state)
+```
+
+We can now make the faceted plot by splitting further by park using park_name (within a single plot):
+
+```{r}
+ ggplot(data = se) +
+     geom_point(aes(x = year, y = visitors, color = park_name)) +
+     facet_wrap(~ state, scales = "free") +
+     theme_bw() +
+     theme(legend.title=element_blank())
+```
+
+
+
 
