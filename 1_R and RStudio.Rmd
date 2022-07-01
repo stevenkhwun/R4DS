@@ -1,19 +1,23 @@
 ---
-title: "Setup Git & GitHub"
+title: "RMarkdown"
 output:
-  pdf_document: default
-  word_document: default
   html_document: default
-date: '2022-06-28'
+  word_document: default
+  pdf_document: default
+date: '2022-07-01'
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Interface with GitHub using RStudio
+An RMarkdown file will allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. The RMarkdown file can be output to different format such as HTML, PDF and Word. Further, we can use LaTeX codes in the RMarkdown file to prepare a professional document.  
+<br />
+First we demonstrate how to create a simple RMarkdown file with output to HTML format. Next, we will demonstrate how to use LaTeX code in RMarkdown file and output to PDF format.
 
-### Procedures
+
+
+### Procedures 
 The following steps are needed to setup interface with GitHub using RStudio. The first step is needed to be set up once. The second step is needed when a new repository is created. (Noted: In order to create a nested list, two tabs or 4 spaces are needed to indent for every level. In order to add a blank line, add two spaces at the end of the previous paragraph and followed by the `<br />` command.)
 
 1. One time setup
@@ -46,21 +50,10 @@ The following steps are needed to setup interface with GitHub using RStudio. The
     v.    Paste it in the Repository URL field, and click `tab` to autofill the Project Directory name. Make sure to keep the Project Directory Name **THE SAME** as the repository name from the URL.
     vi.   Click `Create Project`.
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
+<br />
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
+Examples in create table
 
 First Header  | Second Header
 ------------- | -------------
