@@ -310,15 +310,513 @@ library(gapminder)</code></pre>
 ##  Mean   :59.47   Mean   :  7215.3  
 ##  3rd Qu.:70.85   3rd Qu.:  9325.5  
 ##  Max.   :82.60   Max.   :113523.1</code></pre>
-<pre class="r"><code># library(skimr) # install.packages(&#39;skimr&#39;)
-# skim(gapminder)</code></pre>
+<pre class="r"><code>library(skimr) # install.packages(&#39;skimr&#39;)</code></pre>
+<pre><code>## Warning: package &#39;skimr&#39; was built under R version 4.1.3</code></pre>
+<pre class="r"><code>skim(gapminder)</code></pre>
+<table>
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">gapminder</td>
+</tr>
+<tr class="even">
+<td align="left">Number of rows</td>
+<td align="left">1704</td>
+</tr>
+<tr class="odd">
+<td align="left">Number of columns</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">_______________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Column type frequency:</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">character</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">________________________</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Group variables</td>
+<td align="left">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">empty</th>
+<th align="right">n_unique</th>
+<th align="right">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">country</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">24</td>
+<td align="right">0</td>
+<td align="right">142</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">continent</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="7%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="10%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">skim_variable</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">p0</th>
+<th align="right">p25</th>
+<th align="right">p50</th>
+<th align="right">p75</th>
+<th align="right">p100</th>
+<th align="left">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">year</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1979.50</td>
+<td align="right">17.27</td>
+<td align="right">1952.00</td>
+<td align="right">1965.75</td>
+<td align="right">1979.50</td>
+<td align="right">1993.25</td>
+<td align="right">2007.0</td>
+<td align="left">▇▅▅▅▇</td>
+</tr>
+<tr class="even">
+<td align="left">pop</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">29601212.33</td>
+<td align="right">106157896.75</td>
+<td align="right">60011.00</td>
+<td align="right">2793664.00</td>
+<td align="right">7023595.50</td>
+<td align="right">19585221.75</td>
+<td align="right">1318683096.0</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td align="left">lifeExp</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">59.47</td>
+<td align="right">12.92</td>
+<td align="right">23.60</td>
+<td align="right">48.20</td>
+<td align="right">60.71</td>
+<td align="right">70.85</td>
+<td align="right">82.6</td>
+<td align="left">▁▆▇▇▇</td>
+</tr>
+<tr class="even">
+<td align="left">gdpPercap</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">7215.33</td>
+<td align="right">9857.45</td>
+<td align="right">241.17</td>
+<td align="right">1202.06</td>
+<td align="right">3531.85</td>
+<td align="right">9325.46</td>
+<td align="right">113523.1</td>
+<td align="left">▇▁▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="look-at-the-variables-inside-a-data.frame" class="section level5">
+<h5>Look at the variables inside a data.frame</h5>
+<p>To specify a single variable from a <code>data.frame</code>, use the dollar sign <code>$</code>. The <code>$</code> operator is a way to extract of replace parts of an object — check out the help menu for <code>$</code>. It’s a common operator you’ll see in R.</p>
+<pre class="r"><code># Not evaluated
+gapminder$lifeExp # very long! hard to make sense of...</code></pre>
+<p>Its more sensible to do the following:</p>
+<pre class="r"><code>head(gapminder$lifeExp) # can do the same tests we tried before</code></pre>
+<pre><code>## [1] 28.801 30.332 31.997 34.020 36.088 38.438</code></pre>
+<pre class="r"><code>str(gapminder$lifeExp) # it is a single numeric vector</code></pre>
+<pre><code>##  num [1:1704] 28.8 30.3 32 34 36.1 ...</code></pre>
+<pre class="r"><code>summary(gapminder$lifeExp) # same information, formatted slightly differently</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   23.60   48.20   60.71   59.47   70.85   82.60</code></pre>
 </div>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="data:image/png;base64,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" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="dplyr-basics" class="section level3">
+<h3><code>dplyr</code> basics</h3>
+<p>There are five <code>dplyr</code> functions that you will use to do the vast majority of data manipulations:</p>
+<ul>
+<li><code>filter()</code>: pick observations by their values</li>
+<li><code>select()</code>: pick variables by their names</li>
+<li><code>mutate()</code>: create new variables with functions of existing variables</li>
+<li><code>summarise()</code>: collapse many values down to a single summary</li>
+<li><code>arrange()</code>: reorder the rows</li>
+</ul>
+<p>These can all be used in conjunction with <code>group_by()</code> which changes the scope of each function from operating on the entire dataset to operating on it group-by-group. These six functions provide the verbs for a language of data manipulation.<br />
+<br /> All verbs work similarly:</p>
+<ol style="list-style-type: decimal">
+<li>The first argument is a data frame.</li>
+<li>The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using <code>$</code>.</li>
+<li>The result is a new data frame.</li>
+</ol>
+</div>
+<div id="filter-subsets-data-row-wise-observations" class="section level3">
+<h3><code>filter()</code> subsets data row-wise (observations)</h3>
+<p>You will want to isolate bits of your data; maybe you want to only look at a single country or a few years. R calls this subsetting.<br />
+<br /> <code>filter()</code> is a function in <code>dplyr</code> that takes logical expressions and returns the rows for which all are <code>TRUE</code>.</p>
+<pre class="r"><code>filter(gapminder, lifeExp &lt; 29)</code></pre>
+<pre><code>## # A tibble: 2 x 6
+##   country      year     pop continent lifeExp gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952 8425333 Asia         28.8      779.
+## 2 Rwanda       1992 7290203 Africa       23.6      737.</code></pre>
+<p>You can say this out loud: “Filter the gapminder data for life expectancy less than 29”. Notice that when we do this, all the columns are returned, but only the rows that have the life expectancy less than 29. We’ve subsetted by row.<br />
+<br /> Let’s try another: “Filter the gapminder data for the country Mexico”.</p>
+<pre class="r"><code>filter(gapminder, country == &quot;Mexico&quot;)</code></pre>
+<pre><code>## # A tibble: 12 x 6
+##    country  year       pop continent lifeExp gdpPercap
+##    &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Mexico   1952  30144317 Americas     50.8     3478.
+##  2 Mexico   1957  35015548 Americas     55.2     4132.
+##  3 Mexico   1962  41121485 Americas     58.3     4582.
+##  4 Mexico   1967  47995559 Americas     60.1     5755.
+##  5 Mexico   1972  55984294 Americas     62.4     6809.
+##  6 Mexico   1977  63759976 Americas     65.0     7675.
+##  7 Mexico   1982  71640904 Americas     67.4     9611.
+##  8 Mexico   1987  80122492 Americas     69.5     8688.
+##  9 Mexico   1992  88111030 Americas     71.5     9472.
+## 10 Mexico   1997  95895146 Americas     73.7     9767.
+## 11 Mexico   2002 102479927 Americas     74.9    10742.
+## 12 Mexico   2007 108700891 Americas     76.2    11978.</code></pre>
+<p>How about if we want two country names? We can’t use the <code>==</code> operator here, because it can only operate on one thing at a time. We will use the <code>%in%</code> operator:</p>
+<pre class="r"><code>filter(gapminder, country %in% c(&quot;Mexico&quot;, &quot;Peru&quot;))</code></pre>
+<pre><code>## # A tibble: 24 x 6
+##    country  year      pop continent lifeExp gdpPercap
+##    &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Mexico   1952 30144317 Americas     50.8     3478.
+##  2 Mexico   1957 35015548 Americas     55.2     4132.
+##  3 Mexico   1962 41121485 Americas     58.3     4582.
+##  4 Mexico   1967 47995559 Americas     60.1     5755.
+##  5 Mexico   1972 55984294 Americas     62.4     6809.
+##  6 Mexico   1977 63759976 Americas     65.0     7675.
+##  7 Mexico   1982 71640904 Americas     67.4     9611.
+##  8 Mexico   1987 80122492 Americas     69.5     8688.
+##  9 Mexico   1992 88111030 Americas     71.5     9472.
+## 10 Mexico   1997 95895146 Americas     73.7     9767.
+## # ... with 14 more rows</code></pre>
+<p>How about if we want Mexico in 2002? You can pass filter different criteria:</p>
+<pre class="r"><code>filter(gapminder, country == &quot;Mexico&quot;, year == 2002)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   country  year       pop continent lifeExp gdpPercap
+##   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Mexico   2002 102479927 Americas     74.9    10742.</code></pre>
+<p>Or Mexico and Peru in 2002:</p>
+<pre class="r"><code>filter(gapminder, country %in% c(&quot;Mexico&quot;, &quot;Peru&quot;), year == 2002)</code></pre>
+<pre><code>## # A tibble: 2 x 6
+##   country  year       pop continent lifeExp gdpPercap
+##   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Mexico   2002 102479927 Americas     74.9    10742.
+## 2 Peru     2002  26769436 Americas     69.9     5909.</code></pre>
+<p>The average life expectency in Brazil between 1987 and 2007.<br />
+Hint: do this in 2 steps by assigning a variable and then using the <code>mean()</code> function.<br />
+Note: The maximun number of <code>year</code> in the dataset is 2007.</p>
+<pre class="r"><code>x &lt;- filter(gapminder, country == &quot;Brazil&quot;, year &gt; 1986)  
+mean(x$lifeExp)  </code></pre>
+<pre><code>## [1] 69.0092</code></pre>
+<p>R also has two operators for combining multiple comparisons: <code>&amp;</code> and <code>|</code>, which stand for <code>AND</code> and <code>OR</code>, respectively. For example, we can filter to only keep the earliest and latest years in the dataset:</p>
+<pre class="r"><code>x &lt;- filter(gapminder, country == &quot;Brazil&quot;, year &gt; 1986 &amp; year &lt; 2008)
+mean(x$lifeExp)</code></pre>
+<pre><code>## [1] 69.0092</code></pre>
+</div>
+<div id="select-subsets-data-column-wise-variables" class="section level3">
+<h3><code>select()</code> subsets data column-wise (variables)</h3>
+<p>We can select multiple columns with a comma, after we specify the data frame (<code>gapminder</code>).</p>
+<pre class="r"><code>select(gapminder, year, country, lifeExp) </code></pre>
+<pre><code>## # A tibble: 1,704 x 3
+##     year country     lifeExp
+##    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+##  1  1952 Afghanistan    28.8
+##  2  1957 Afghanistan    30.3
+##  3  1962 Afghanistan    32.0
+##  4  1967 Afghanistan    34.0
+##  5  1972 Afghanistan    36.1
+##  6  1977 Afghanistan    38.4
+##  7  1982 Afghanistan    39.9
+##  8  1987 Afghanistan    40.8
+##  9  1992 Afghanistan    41.7
+## 10  1997 Afghanistan    41.8
+## # ... with 1,694 more rows</code></pre>
+<p>We can also use <code>-</code> to deselect columns.</p>
+<pre class="r"><code>select(gapminder, -continent, -lifeExp) # you can use - to deselect columns</code></pre>
+<pre><code>## # A tibble: 1,704 x 4
+##    country      year      pop gdpPercap
+##    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Afghanistan  1952  8425333      779.
+##  2 Afghanistan  1957  9240934      821.
+##  3 Afghanistan  1962 10267083      853.
+##  4 Afghanistan  1967 11537966      836.
+##  5 Afghanistan  1972 13079460      740.
+##  6 Afghanistan  1977 14880372      786.
+##  7 Afghanistan  1982 12881816      978.
+##  8 Afghanistan  1987 13867957      852.
+##  9 Afghanistan  1992 16317921      649.
+## 10 Afghanistan  1997 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+</div>
+<div id="use-select-and-filter-together" class="section level3">
+<h3>Use <code>select()</code> and <code>filter()</code> together</h3>
+<p>Let’s filter for <code>Cambodia</code> and remove the <code>continent</code> and <code>lifeExp</code> columns. We’ll save this as a variable. Actually, as two temporary variables, which means that for the second one we need to operate on <code>gap_cambodia</code>, not <code>gapminder</code>.</p>
+<pre class="r"><code>gap_cambodia  &lt;- filter(gapminder, country == &quot;Cambodia&quot;)
+gap_cambodia2 &lt;- select(gap_cambodia, -continent, -lifeExp)
+gap_cambodia2</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##    country   year      pop gdpPercap
+##    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Cambodia  1952  4693836      368.
+##  2 Cambodia  1957  5322536      434.
+##  3 Cambodia  1962  6083619      497.
+##  4 Cambodia  1967  6960067      523.
+##  5 Cambodia  1972  7450606      422.
+##  6 Cambodia  1977  6978607      525.
+##  7 Cambodia  1982  7272485      624.
+##  8 Cambodia  1987  8371791      684.
+##  9 Cambodia  1992 10150094      682.
+## 10 Cambodia  1997 11782962      734.
+## 11 Cambodia  2002 12926707      896.
+## 12 Cambodia  2007 14131858     1714.</code></pre>
+<p>We also could have called them both <code>gap_cambodia</code> and overwritten the first assignment. Either way, naming them and keeping track of them gets super cumbersome, which means more time to understand what’s going on and opportunities for confusion or error.</p>
+</div>
+<div id="the-new-pipe-operator" class="section level3">
+<h3>The new pipe <code>%&gt;%</code> operator</h3>
+<p>We now explore the new pipe operator that <code>dplyr</code> imports from the <code>magrittr</code> package by Stefan Bache. We no longer need to enact multi-operation commands by nesting them inside each other. And we won’t need to make temporary variables like we did in the Cambodia example above. This new syntax leads to code that is much easier to write and to read: it actually tells the story of your analysis.<br />
+<br /> Here’s what it looks like: <code>%&gt;%</code>. The RStudio keyboard shortcut: <code>Ctrl</code> + <code>Shift</code> + <code>M</code> (Windows), <code>Cmd</code> + <code>Shift</code> + <code>M</code> (Mac).<br />
+<br /> This pipe operator takes the thing on the left-hand-side and <strong>pipes</strong> it into the function call on the right-hand-side. It literally drops it in as the first argument. For example:</p>
+<pre class="r"><code>gapminder %&gt;% head()</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   country      year      pop continent lifeExp gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333 Asia         28.8      779.
+## 2 Afghanistan  1957  9240934 Asia         30.3      821.
+## 3 Afghanistan  1962 10267083 Asia         32.0      853.
+## 4 Afghanistan  1967 11537966 Asia         34.0      836.
+## 5 Afghanistan  1972 13079460 Asia         36.1      740.
+## 6 Afghanistan  1977 14880372 Asia         38.4      786.</code></pre>
+<p>This is equivalent to:</p>
+<pre class="r"><code>head(gapminder)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   country      year      pop continent lifeExp gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333 Asia         28.8      779.
+## 2 Afghanistan  1957  9240934 Asia         30.3      821.
+## 3 Afghanistan  1962 10267083 Asia         32.0      853.
+## 4 Afghanistan  1967 11537966 Asia         34.0      836.
+## 5 Afghanistan  1972 13079460 Asia         36.1      740.
+## 6 Afghanistan  1977 14880372 Asia         38.4      786.</code></pre>
+<p>You can still specify other arguments to this function! To see the first 3 rows of <code>Gapminder</code>, we could say <code>head(gapminder, 3)</code> or this:</p>
+<pre class="r"><code>gapminder %&gt;% head(3)</code></pre>
+<pre><code>## # A tibble: 3 x 6
+##   country      year      pop continent lifeExp gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333 Asia         28.8      779.
+## 2 Afghanistan  1957  9240934 Asia         30.3      821.
+## 3 Afghanistan  1962 10267083 Asia         32.0      853.</code></pre>
+<p><strong>I’ve advised you to think “gets” whenever you see the assignment operator, <code>&lt;-</code>. Similarly, you should think “and then” whenever you see the pipe operator, <code>%&gt;%</code>.</strong><br />
+<br /> One of the most awesome things about this is that you START with the data before you say what you’re doing to DO to it. So above: “take the <code>gapminder</code> data, and then give me the first three entries”.<br />
+<br /> This means that instead of this:</p>
+<pre class="r"><code>## instead of this...
+gap_cambodia  &lt;- filter(gapminder, country == &quot;Cambodia&quot;)
+gap_cambodia2 &lt;- select(gap_cambodia, -continent, -lifeExp) 
+
+## ...we can do this
+gap_cambodia  &lt;- gapminder %&gt;% filter(country == &quot;Cambodia&quot;)
+gap_cambodia2 &lt;- gap_cambodia %&gt;% select(-continent, -lifeExp) </code></pre>
+<p>So you can see that we’ll start with gapminder in the first example line, and then gap_cambodia in the second. This makes it a bit easier to see what data we are starting with and what we are doing to it.<br />
+<br /> But, we still have those temporary variables so we’re not truly that better off. However, <strong>we can use the pipe to chain those two operations together</strong>:</p>
+<pre class="r"><code>gap_cambodia  &lt;- gapminder %&gt;% 
+  filter(country == &quot;Cambodia&quot;) %&gt;%
+  select(-continent, -lifeExp) 
+gap_cambodia</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##    country   year      pop gdpPercap
+##    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Cambodia  1952  4693836      368.
+##  2 Cambodia  1957  5322536      434.
+##  3 Cambodia  1962  6083619      497.
+##  4 Cambodia  1967  6960067      523.
+##  5 Cambodia  1972  7450606      422.
+##  6 Cambodia  1977  6978607      525.
+##  7 Cambodia  1982  7272485      624.
+##  8 Cambodia  1987  8371791      684.
+##  9 Cambodia  1992 10150094      682.
+## 10 Cambodia  1997 11782962      734.
+## 11 Cambodia  2002 12926707      896.
+## 12 Cambodia  2007 14131858     1714.</code></pre>
+<p>By using multiple lines I can actually read this like a story and there aren’t temporary variables that get super confusing. In my head:</p>
+<ol style="list-style-type: decimal">
+<li><strong>start</strong> with the <code>gapminder</code> data, and then</li>
+<li><strong>filter</strong> for <code>Cambodia</code>, and then</li>
+<li><strong>drop</strong> the variables <code>continent</code> and <code>lifeExp</code></li>
+</ol>
+</div>
+<div id="mutate-adds-new-variables" class="section level3">
+<h3><code>mutate()</code> adds new variables</h3>
+<p>Imagine we want to know each country’s annual GDP. We can multiply <code>pop</code> by <code>gdpPercap</code> to create a new column named <code>gdp</code>.</p>
+<pre class="r"><code>gapminder %&gt;%
+  mutate(gdp = pop * gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+##    country      year      pop continent lifeExp gdpPercap          gdp
+##    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan  1952  8425333 Asia         28.8      779.  6567086330.
+##  2 Afghanistan  1957  9240934 Asia         30.3      821.  7585448670.
+##  3 Afghanistan  1962 10267083 Asia         32.0      853.  8758855797.
+##  4 Afghanistan  1967 11537966 Asia         34.0      836.  9648014150.
+##  5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
+##  6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
+##  7 Afghanistan  1982 12881816 Asia         39.9      978. 12598563401.
+##  8 Afghanistan  1987 13867957 Asia         40.8      852. 11820990309.
+##  9 Afghanistan  1992 16317921 Asia         41.7      649. 10595901589.
+## 10 Afghanistan  1997 22227415 Asia         41.8      635. 14121995875.
+## # ... with 1,694 more rows</code></pre>
+<p>Further, if we want to see only the first three rows:</p>
+<pre class="r"><code>gapminder %&gt;%
+  mutate(gdp = pop * gdpPercap) %&gt;%
+  head(3)</code></pre>
+<pre><code>## # A tibble: 3 x 7
+##   country      year      pop continent lifeExp gdpPercap         gdp
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333 Asia         28.8      779. 6567086330.
+## 2 Afghanistan  1957  9240934 Asia         30.3      821. 7585448670.
+## 3 Afghanistan  1962 10267083 Asia         32.0      853. 8758855797.</code></pre>
+<p>Another example, add a new column of the population in thousands for all Asian countries in the year 2007:</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(continent == &quot;Asia&quot;,
+         year == 2007) %&gt;%
+  mutate(pop_thousands = pop/1000) %&gt;%
+  select(country, year, pop_thousands) #this cleans up the dataframe but isn&#39;t necessary</code></pre>
+<pre><code>## # A tibble: 33 x 3
+##    country          year pop_thousands
+##    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Afghanistan      2007        31890.
+##  2 Bahrain          2007          709.
+##  3 Bangladesh       2007       150448.
+##  4 Cambodia         2007        14132.
+##  5 China            2007      1318683.
+##  6 Hong Kong China  2007         6980.
+##  7 India            2007      1110396.
+##  8 Indonesia        2007       223547 
+##  9 Iran             2007        69454.
+## 10 Iraq             2007        27500.
+## # ... with 23 more rows</code></pre>
+</div>
+<div id="group_by-operates-on-groups" class="section level3">
+<h3><code>group_by()</code> operates on groups</h3>
+<p>What if we wanted to know the total population on each continent in 2002? Answering this question requires a <strong>grouping variable</strong>.<br />
+<br /> By using <code>group_by()</code> we can set our grouping variable to <code>continent</code> and create a new column called <code>cont_pop</code> that will add up all country populations by their associated continents.</p>
+<pre class="r"><code>gapminder %&gt;%
+  filter(year == 2002) %&gt;%
+  group_by(continent) %&gt;% 
+  mutate(cont_pop = sum(pop))</code></pre>
+<pre><code>## # A tibble: 142 x 7
+## # Groups:   continent [5]
+##    country      year       pop continent lifeExp gdpPercap   cont_pop
+##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Afghanistan  2002  25268405 Asia         42.1      727. 3601802203
+##  2 Albania      2002   3508512 Europe       75.7     4604.  578223869
+##  3 Algeria      2002  31287142 Africa       71.0     5288.  833723916
+##  4 Angola       2002  10866106 Africa       41.0     2773.  833723916
+##  5 Argentina    2002  38331121 Americas     74.3     8798.  849772762
+##  6 Australia    2002  19546792 Oceania      80.4    30688.   23454829
+##  7 Austria      2002   8148312 Europe       79.0    32418.  578223869
+##  8 Bahrain      2002    656397 Asia         74.8    23404. 3601802203
+##  9 Bangladesh   2002 135656790 Asia         62.0     1136. 3601802203
+## 10 Belgium      2002  10311970 Europe       78.3    30486.  578223869
+## # ... with 132 more rows</code></pre>
+<div id="summarize-with-group_by" class="section level5">
+<h5><code>summarize()</code> with <code>group_by()</code></h5>
+<p>We want to operate on a group, but actually collapse or distill the output from that group. The <code>summarize()</code> function will do that for us.</p>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(continent) %&gt;%
+  summarize(cont_pop = sum(pop)) %&gt;%
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent    cont_pop
+##   &lt;chr&gt;           &lt;dbl&gt;
+## 1 Africa     6187585961
+## 2 Americas   7351438499
+## 3 Asia      30507333902
+## 4 Europe     6181115304
+## 5 Oceania     212992136</code></pre>
+<p><code>summarize()</code> will actually only keep the columns that are grouped_by or summarized. So if we wanted to keep other columns, we’d have to do have a few more steps. <code>ungroup()</code> removes the grouping and it’s good to get in the habit of using it after a <code>group_by()</code>.<br />
+<br /> We can use more than one grouping variable. Let’s get total populations by <strong>continent</strong> and <strong>year</strong>.</p>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(continent, year) %&gt;%
+  summarize(cont_pop = sum(pop))</code></pre>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year  cont_pop
+##    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Africa     1952 237640501
+##  2 Africa     1957 264837738
+##  3 Africa     1962 296516865
+##  4 Africa     1967 335289489
+##  5 Africa     1972 379879541
+##  6 Africa     1977 433061021
+##  7 Africa     1982 499348587
+##  8 Africa     1987 574834110
+##  9 Africa     1992 659081517
+## 10 Africa     1997 743832984
+## # ... with 50 more rows</code></pre>
+</div>
 </div>
 
 
