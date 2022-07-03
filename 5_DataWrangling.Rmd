@@ -1,0 +1,103 @@
+---
+title: 'Data Wrangling: `dplyr`'
+author: "AW"
+date: "2022/7/3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Data and packages
+
+We’ll use the package `dplyr`, which is bundled within the `tidyverse` package. `dplyr` is a package for data manipulation, developed by Hadley Wickham and Romain Francois. It is built to be fast, highly expressive, and open-minded about how your data is stored. It is installed as part of the tidyverse meta-package and, as a core package, it is among those loaded via `library(tidyverse)`.
+
+```{r tidyverse, warning=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+We’ll be using _Gapminder data_, which represents the health and wealth of nations. It was pioneered by Hans Rosling, who is famous for describing the prosperity of nations over time through famines, wars and other historic events with this beautiful data visualization in his 2006 TED Talk: The best stats you’ve ever seen.  
+<br />
+
+##### Read data with `readr::read_csv()`
+We can read this data into R directly from GitHub, without downloading it. The url for the raw data is as following:
+
+https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv
+
+Let’s read this `csv` file and name the variable “`gapminder`”. We will use the `read_csv()` function from the `readr` package (part of the `tidyverse`, so it’s already installed!).
+
+```{r}
+## read gapminder csv. Note the readr:: prefix identifies which package it's in
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv') 
+```
+
+Note: `read_csv` works with local filepaths as well, you could use one from your computer.  
+<br />
+
+##### Read data directly from the package
+
+Alternatively, you can read in the data directly from the package by the folloeing R code:
+
+```{r, eval=FALSE}
+# Not evaluated
+library(gapminder)
+```
+<br />
+
+##### Expore the dataset
+
+Let’s use `head` and `tail`:
+
+```{r}
+head(gapminder) # shows first 6
+tail(gapminder) # shows last 6
+
+head(gapminder, 10) # shows first X that you indicate
+tail(gapminder, 12) # guess what this does!
+```
+
+`str()` will provide a sensible description of almost anything: when in doubt, inspect using `str()` on some of the recently created objects to get some ideas about what to do next.
+
+```{r}
+str(gapminder) # ?str - displays the structure of an object
+```
+
+`gapminder` is a `data.frame`. We aren’t going to get into the other types of data receptacles today (‘`arrays`’, ‘`matrices`’), because working with `data.frames` is what you should primarily use. Why?
+
+* `data.frames` package related variables neatly together, great for analysis
+* most functions, including the latest and greatest packages actually require that your data be in a `data.frame`
+* `data.frames` can hold variables of different flavors such as
+    * character data (country or continent names; “Characters (`chr`)”)
+    * quantitative data (years, population; “Integers (`int`)” or “Numeric (`num`)”)
+    * categorical information (male vs. female)
+
+More ways to learn basic info on a `data.frame`.
+
+```{r}
+names(gapminder)
+dim(gapminder)    # ?dim dimension
+ncol(gapminder)   # ?ncol number of columns
+nrow(gapminder)   # ?nrow number of rows
+```
+
+A statistical overview can be obtained with `summary()`, or with `skimr::skim()`.
+
+```{r}
+summary(gapminder)
+
+# library(skimr) # install.packages('skimr')
+# skim(gapminder)
+```
+
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
