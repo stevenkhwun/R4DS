@@ -321,3 +321,92 @@ gapminder %>%
   summarize(cont_pop = sum(pop))
 ```
 
+### `arrange()` orders columns
+
+The above result is ordered alphabetically by `continent`. But if we wanted to order it in ascending order for year. The `dplyr` function is `arrange()`.
+
+```{r, message=FALSE}
+gapminder %>%
+  group_by(continent, year) %>%
+  summarize(cont_pop = sum(pop)) %>%
+  arrange(year)
+```
+
+Further example: Find the countries with the largest GDP of each continent.
+
+```{r}
+gapminder %>%
+  mutate(gdp = pop * gdpPercap) %>%
+  group_by(continent) %>%
+  mutate(max_gdp = max(gdp)) %>%
+  filter(gdp == max_gdp)
+```
+
+Further example:
+
+1. arrange your data frame in descending order
+2. save your data frame as a variable
+3. find the maximum life expectancy for countries in Asia
+
+```{r}
+asia_life_exp <- gapminder %>%
+  filter(continent == 'Asia') %>%
+  group_by(country) %>%
+  filter(lifeExp == max(lifeExp)) %>%
+  arrange(year) 
+
+asia_life_exp
+```
+
+### All together
+
+We have done a pretty incredible amount of work in a few lines. Our whole analysis is this. Imagine the possibilities from here. It’s very readable: you see the data as the first thing, it’s not nested. Then, you can read the verbs. This is the whole thing, with explicit package calls from `readr::` and `dplyr::`:
+
+```{r}
+## gapminder-wrangle.R
+## J. Lowndes lowndes@nceas.ucsb.edu
+
+
+## load libraries
+library(tidyverse) ## install.packages('tidyverse')
+
+## read in data
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv') 
+
+## summarize
+gap_max_life_exp <- gapminder %>% 
+  dplyr::select(-continent, -lifeExp) %>% # or select(country, year, pop, gdpPercap)
+  dplyr::group_by(country) %>%
+  dplyr::mutate(gdp = pop * gdpPercap) %>%
+  dplyr::summarize(max_gdp = max(gdp)) %>%
+  dplyr::ungroup() 
+
+gap_max_life_exp
+```
+
+### Compare to base R
+
+Let’s compare with some base R code to accomplish the same things. Base R requires subsetting with the `[rows, columns]` notation. This notation is something you’ll see a lot in base R. the brackets `[ ]` allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.
+
+If we don’t write anything after the comma, that means “all columns”. And if we don’t write anything before the comma, that means “all rows”.
+
+Also, the `$` operator is how you access specific columns of your dataframe. You can also add new columns like we will do with `mex$gdp` below.
+
+Instead of calculating the max for each country like we did with `dplyr` above, here we will calculate the max for one country, Mexico.
+
+```{r}
+## gapminder-wrangle.R --- baseR
+## J. Lowndes lowndes@nceas.ucsb.edu
+
+
+gapminder <- read.csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv', stringsAsFactors = FALSE) 
+x1  <- gapminder[ , c('country', 'year', 'pop', 'gdpPercap') ]# subset columns
+mex <- x1[x1$country == "Mexico", ] # subset rows
+mex$gdp <- mex$pop * mex$gdpPercap # add new columns
+mex$max_gdp <- max(mex$gdp)
+
+mex
+```
+
+
+

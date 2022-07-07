@@ -818,6 +818,147 @@ gap_cambodia</code></pre>
 ## # ... with 50 more rows</code></pre>
 </div>
 </div>
+<div id="arrange-orders-columns" class="section level3">
+<h3><code>arrange()</code> orders columns</h3>
+<p>The above result is ordered alphabetically by <code>continent</code>. But if we wanted to order it in ascending order for year. The <code>dplyr</code> function is <code>arrange()</code>.</p>
+<pre class="r"><code>gapminder %&gt;%
+  group_by(continent, year) %&gt;%
+  summarize(cont_pop = sum(pop)) %&gt;%
+  arrange(year)</code></pre>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year    cont_pop
+##    &lt;chr&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Africa     1952  237640501 
+##  2 Americas   1952  345152446 
+##  3 Asia       1952 1395357352.
+##  4 Europe     1952  418120846 
+##  5 Oceania    1952   10686006 
+##  6 Africa     1957  264837738 
+##  7 Americas   1957  386953916 
+##  8 Asia       1957 1562780599 
+##  9 Europe     1957  437890351 
+## 10 Oceania    1957   11941976 
+## # ... with 50 more rows</code></pre>
+<p>Further example: Find the countries with the largest GDP of each continent.</p>
+<pre class="r"><code>gapminder %&gt;%
+  mutate(gdp = pop * gdpPercap) %&gt;%
+  group_by(continent) %&gt;%
+  mutate(max_gdp = max(gdp)) %&gt;%
+  filter(gdp == max_gdp)</code></pre>
+<pre><code>## # A tibble: 5 x 8
+## # Groups:   continent [5]
+##   country        year        pop continent lifeExp gdpPercap     gdp max_gdp
+##   &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Australia      2007   20434176 Oceania      81.2    34435. 7.04e11 7.04e11
+## 2 China          2007 1318683096 Asia         73.0     4959. 6.54e12 6.54e12
+## 3 Egypt          2007   80264543 Africa       71.3     5581. 4.48e11 4.48e11
+## 4 Germany        2007   82400996 Europe       79.4    32170. 2.65e12 2.65e12
+## 5 United States  2007  301139947 Americas     78.2    42952. 1.29e13 1.29e13</code></pre>
+<p>Further example:</p>
+<ol style="list-style-type: decimal">
+<li>arrange your data frame in descending order</li>
+<li>save your data frame as a variable</li>
+<li>find the maximum life expectancy for countries in Asia</li>
+</ol>
+<pre class="r"><code>asia_life_exp &lt;- gapminder %&gt;%
+  filter(continent == &#39;Asia&#39;) %&gt;%
+  group_by(country) %&gt;%
+  filter(lifeExp == max(lifeExp)) %&gt;%
+  arrange(year) 
+
+asia_life_exp</code></pre>
+<pre><code>## # A tibble: 33 x 6
+## # Groups:   country [33]
+##    country          year        pop continent lifeExp gdpPercap
+##    &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Iraq             1987   16543189 Asia         65.0    11644.
+##  2 Korea Dem. Rep.  1987   19067554 Asia         70.6     4106.
+##  3 Afghanistan      2007   31889923 Asia         43.8      975.
+##  4 Bahrain          2007     708573 Asia         75.6    29796.
+##  5 Bangladesh       2007  150448339 Asia         64.1     1391.
+##  6 Cambodia         2007   14131858 Asia         59.7     1714.
+##  7 China            2007 1318683096 Asia         73.0     4959.
+##  8 Hong Kong China  2007    6980412 Asia         82.2    39725.
+##  9 India            2007 1110396331 Asia         64.7     2452.
+## 10 Indonesia        2007  223547000 Asia         70.6     3541.
+## # ... with 23 more rows</code></pre>
+</div>
+<div id="all-together" class="section level3">
+<h3>All together</h3>
+<p>We have done a pretty incredible amount of work in a few lines. Our whole analysis is this. Imagine the possibilities from here. It’s very readable: you see the data as the first thing, it’s not nested. Then, you can read the verbs. This is the whole thing, with explicit package calls from <code>readr::</code> and <code>dplyr::</code>:</p>
+<pre class="r"><code>## gapminder-wrangle.R
+## J. Lowndes lowndes@nceas.ucsb.edu
+
+
+## load libraries
+library(tidyverse) ## install.packages(&#39;tidyverse&#39;)
+
+## read in data
+gapminder &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv&#39;) </code></pre>
+<pre><code>## Rows: 1704 Columns: 6
+## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (2): country, continent
+## dbl (4): year, pop, lifeExp, gdpPercap
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>## summarize
+gap_max_life_exp &lt;- gapminder %&gt;% 
+  dplyr::select(-continent, -lifeExp) %&gt;% # or select(country, year, pop, gdpPercap)
+  dplyr::group_by(country) %&gt;%
+  dplyr::mutate(gdp = pop * gdpPercap) %&gt;%
+  dplyr::summarize(max_gdp = max(gdp)) %&gt;%
+  dplyr::ungroup() 
+
+gap_max_life_exp</code></pre>
+<pre><code>## # A tibble: 142 x 2
+##    country           max_gdp
+##    &lt;chr&gt;               &lt;dbl&gt;
+##  1 Afghanistan  31079291949.
+##  2 Albania      21376411360.
+##  3 Algeria     207444851958.
+##  4 Angola       59583895818.
+##  5 Argentina   515033625357.
+##  6 Australia   703658358894.
+##  7 Austria     296229400691.
+##  8 Bahrain      21112675360.
+##  9 Bangladesh  209311822134.
+## 10 Belgium     350141166520.
+## # ... with 132 more rows</code></pre>
+</div>
+<div id="compare-to-base-r" class="section level3">
+<h3>Compare to base R</h3>
+<p>Let’s compare with some base R code to accomplish the same things. Base R requires subsetting with the <code>[rows, columns]</code> notation. This notation is something you’ll see a lot in base R. the brackets <code>[ ]</code> allow you to extract parts of an object. Within the brackets, the comma separates rows from columns.</p>
+<p>If we don’t write anything after the comma, that means “all columns”. And if we don’t write anything before the comma, that means “all rows”.</p>
+<p>Also, the <code>$</code> operator is how you access specific columns of your dataframe. You can also add new columns like we will do with <code>mex$gdp</code> below.</p>
+<p>Instead of calculating the max for each country like we did with <code>dplyr</code> above, here we will calculate the max for one country, Mexico.</p>
+<pre class="r"><code>## gapminder-wrangle.R --- baseR
+## J. Lowndes lowndes@nceas.ucsb.edu
+
+
+gapminder &lt;- read.csv(&#39;https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv&#39;, stringsAsFactors = FALSE) 
+x1  &lt;- gapminder[ , c(&#39;country&#39;, &#39;year&#39;, &#39;pop&#39;, &#39;gdpPercap&#39;) ]# subset columns
+mex &lt;- x1[x1$country == &quot;Mexico&quot;, ] # subset rows
+mex$gdp &lt;- mex$pop * mex$gdpPercap # add new columns
+mex$max_gdp &lt;- max(mex$gdp)
+
+mex</code></pre>
+<pre><code>##     country year       pop gdpPercap          gdp      max_gdp
+## 985  Mexico 1952  30144317  3478.126 1.048457e+11 1.301973e+12
+## 986  Mexico 1957  35015548  4131.547 1.446684e+11 1.301973e+12
+## 987  Mexico 1962  41121485  4581.609 1.884026e+11 1.301973e+12
+## 988  Mexico 1967  47995559  5754.734 2.762017e+11 1.301973e+12
+## 989  Mexico 1972  55984294  6809.407 3.812198e+11 1.301973e+12
+## 990  Mexico 1977  63759976  7674.929 4.893533e+11 1.301973e+12
+## 991  Mexico 1982  71640904  9611.148 6.885513e+11 1.301973e+12
+## 992  Mexico 1987  80122492  8688.156 6.961167e+11 1.301973e+12
+## 993  Mexico 1992  88111030  9472.384 8.346215e+11 1.301973e+12
+## 994  Mexico 1997  95895146  9767.298 9.366364e+11 1.301973e+12
+## 995  Mexico 2002 102479927 10742.441 1.100885e+12 1.301973e+12
+## 996  Mexico 2007 108700891 11977.575 1.301973e+12 1.301973e+12</code></pre>
+</div>
 
 
 
