@@ -1,9 +1,9 @@
 ---
 title: "Setup Git & GitHub"
 output:
-  pdf_document: default
-  word_document: default
   html_document: default
+  word_document: default
+  pdf_document: default
 date: '2022-06-28'
 ---
 
