@@ -53,7 +53,7 @@ The following steps are needed to setup interface with GitHub using RStudio. The
 
 <br />
 
-Examples in create table
+**Examples in create table**
 
 First Header  | Second Header
 ------------- | -------------
@@ -61,6 +61,20 @@ Content Cell  | Content Cell
 Content Cell  | Content Cell
 Reference Style Links and Images
 
+
+**Example in creating table by `knitr::kable()`**
 ```{r tables-mtcars}
 knitr::kable(iris[1:5, ], caption = 'A caption')
 ```
+
+**Obtain predicted values, residuals and anova of `lm()`**
+```{r , message=FALSE}
+# EARNINGS regress on schooling
+library(dplyr)
+eawe21 <- read.csv('./Data/EAWE21.csv', header=T)   # Import data
+lm(EARNINGS ~ S, data = eawe21) %>%
+  anova
+```
+(Please the website [https://rc2e.com/linearregressionandanova][rc2e] for more information on regression output.)
+
+[rc2e]: https://rc2e.com/linearregressionandanova

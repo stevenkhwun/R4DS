@@ -44,7 +44,37 @@ In order to output document in PDF format, we need to install MikTeX and run a R
        tinytex::install_tinytex()
     ```
 
+### Some Markdown tricks
 
+**Use `eqnarray` to align the equal sign in a series of equation**
+
+\begin{eqnarray}
+{\hat{u}_{i}}^2 &=&(Y_i-\hat{Y}_{i})^2 =(Y_i-\hat{\beta}_{1}-\hat{\beta}_{2}X_i)^2 \\
+
+&=& Y_i^2+\hat{\beta}_{1}^2+\hat{\beta}_{2}^2X_i^2-2\hat{\beta}_{1}Y_i-2\hat{\beta}_{2}X_iY_i+2\hat{\beta}_{1}\hat{\beta}_{2}X_i \\
+\end{eqnarray}
+
+(For formatting of the above equation array, see the website [Using R Markdown for Class Reports][Eqnarray] by Cosma Shalizi for more information.)  
+<br />
+
+**Use `\quad\mathrm{and}\quad` to join two equations with "and"**
+
+\begin{equation}
+\frac{\partial{RSS}}{\partial{\hat{\beta}_{1}}}=0
+\quad\mathrm{and}\quad
+\frac{\partial{RSS}}{\partial{\hat{\beta}_{2}}}=0
+\end{equation}
+
+(Please see the website [https://tex.stackexchange.com/questions/288222/two-equations-in-one-line][2equations] for more information on how to format two equations on one line.)
+
+
+
+
+
+
+
+[Eqnarray]: https://www.stat.cmu.edu/~cshalizi/rmarkdown/
+[2equations]: https://tex.stackexchange.com/questions/288222/two-equations-in-one-line
 
     
  
