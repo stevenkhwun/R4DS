@@ -68,9 +68,36 @@ In order to output document in PDF format, we need to install MikTeX and run a R
 (Please see the website [https://tex.stackexchange.com/questions/288222/two-equations-in-one-line][2equations] for more information on how to format two equations on one line.)
 
 
+**Different ways to add "for all" in the equation**
 
 
+$\underline{Using ~~ \forall ~~ symbol}$
+$$E(u_i|X_i,...,X_n)=0~~~ \forall~~ i$$
+$$E(u_i)=0 ~~~\forall ~~ i$$
+$\underline{Add~ the~ words "for ~all" -~ method ~1}$
 
+$$E(u_i|X_i,...,X_n)=0 ~~~ for~all ~~ i$$
+$\underline{Add~ the~ words "for ~all" -~ method ~2}$
+
+\begin{equation}
+E(u_i|X_i,...,X_n)=0
+\quad\mathrm{for~~all}\quad
+i
+\end{equation}
+
+**SWEET STYLES**
+
+*italics* or _italics_
+
+**bold**
+
+***bold italics***
+
+__underline__
+
+__*underline italics*__
+
+$\underline{This\space sentence\space underlined\space using\space \LaTeX}$
 
 
 [Eqnarray]: https://www.stat.cmu.edu/~cshalizi/rmarkdown/
