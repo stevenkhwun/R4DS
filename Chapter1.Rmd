@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Key terms
 
 * `read.table()`
+* `pdfetch`
 * `quantmod`
-* Disturbance term
 * Residual
 * Residual sum of squares, _RSS_
 * Ordinary least squares, _OLS_
@@ -53,6 +53,23 @@ round(rbind(prop, se.hat, prop-2*se.hat, prop+2*se.hat), 4)
 barplot(prop, xlab="digit", ylab="proportion")
 abline(h = .1)
 ```
+
+### Getting financial data from Yahoo using the package `pdfetch`
+
+```{r, message=FALSE, warning=FALSE}
+# Getting financial data from Yahoo using the package `pdfetch`
+# Rscript file: /Rscripts/pdfetch.R
+
+library(pdfetch)       # Load the `pdfetch` package
+
+tickernames <- c("0001.HK","0005.HK")
+HKStocks <- pdfetch_YAHOO(tickernames, fields="adjclose",from="2018-01-01")
+nrow(HKStocks)
+plot(HKStocks$"0001.HK", las=2)
+plot(HKStocks$"0005.HK", las=2)
+```
+  
+<br />
 
 ### Retrieving economic data from the internet using the package `quantmod`
 
