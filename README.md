@@ -20,10 +20,13 @@ RStudio has created a large number of cheat sheets, including the one-page R Mar
 
 1.  Methods for class "lm" objects: [https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.summaries.html][lmMethods]   
 
-2.  Plot class "lm" objects: [https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html][lmPlot]
+2.  Plot class "lm" objects: [https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html][lmPlot]  
+<br />
 
 
+**Contents of the repository**
 
+Chapter 1: Basic R operations
 
 
 [OpenDataScience]: http://ohi-science.org/data-science-training/index.html

@@ -1,0 +1,115 @@
+---
+title: "Basic R operations"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+date: '2022-07-23'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Key terms
+
+* `read.table()`
+* `quantmod`
+* Disturbance term
+* Residual
+* Residual sum of squares, _RSS_
+* Ordinary least squares, _OLS_
+
+
+# Importing data
+
+### Importing data from internet
+
+The following is adapted from Example 1.13^[See Jim Albert and Maria Rizzo, _R by Example_, Springer, New York, 2012, pp. 30.] (Digits of $\pi$) of the book "R by Example" by Jim Albert and Mraia Rizzo. The data file “PiDigits.dat^[The text file has been downloaded and saved in the sub-directory "Data."]” contains the first 5000 digits of the mathematical constant $\pi =3.1415926535897932384\dots$. The data is one of the Statistical Reference Datasets provided by the National Institute of Standards and Technology (NIST). 2 Documentation is inserted at the top of the file, and the digits start on line 61. We use the `read.table` function with the complete URL (web address) and skip=60 to read the data starting at line 61. The URL should be enclosed in quotes and on a single line; otherwise an error message “cannot open the connection” occurs.
+
+```{r}
+#Import data from internet
+#Example 1.13 of the book "R by Example"
+#Rscript file: \Rscripts\RbyEG_EG1_13.R
+
+# Read in the data
+pidigits = read.table(
+  "http://www.itl.nist.gov/div898/strd/univ/data/PiDigits.dat",
+  skip=60)
+head(pidigits)
+#Summarize the digits in a table by 'table' function
+table(pidigits)
+#Calculate the proportions of the digits
+prop <- table(pidigits) / 5000
+prop
+#Standard error (se) of the proportion with known proportion
+sqrt(.1*.9 / 5000)
+#For unknow proportion, sample se is calculated
+se.hat <- sqrt(prop * (1 - prop) / 5000)
+se.hat
+#The sample proportion plus or minus two standard errors using vectorized arithmetic
+round(rbind(prop, se.hat, prop-2*se.hat, prop+2*se.hat), 4)
+#A barplots helps to visualize the tabulatd data
+barplot(prop, xlab="digit", ylab="proportion")
+abline(h = .1)
+```
+
+### Retrieving economic data from the internet using the package `quantmod`
+
+The package `quantmod` is used to retrieve financial data from the internet such as Yahoo Finance and the Federal Reserve Economic Data (FRED) of Federal Reserve Bak of St. Louis.  
+<br />
+First, we demonstrate how to retrieve stock prices from Yahoo Finance.
+
+```{r, message=FALSE, warning=FALSE}
+# Retrieve economic data from the internet using the `quantmod` package
+# Rscript file: \Rscripts\quantmod_Yahoo_US.R
+
+# Retrieve stock price from Yahoo Finance
+# Load the required package
+library(quantmod)       #Alternatively `require(quantmod)`
+
+#Get Apple stock price
+getSymbols("AAPL",from="2008-01-03",to="2015-01-28")
+
+#See the size of the loaded data set
+dim(AAPL)
+
+#See the first and last 6 row of data
+head(AAPL)
+tail(AAPL)
+
+#Obtain time plot of closing price and trading volume
+#The subcommand theme="white" set the background of the time plot
+#The default is black
+chartSeries(AAPL,theme="white")
+```
+
+
+
+<br />
+
+**Examples in create table**
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+Reference Style Links and Images
+
+
+**Example in creating table by `knitr::kable()`**
+```{r tables-mtcars}
+knitr::kable(iris[1:5, ], caption = 'A caption')
+```
+
+**Obtain predicted values, residuals and anova of `lm()`**
+```{r , message=FALSE}
+# EARNINGS regress on schooling
+library(dplyr)
+eawe21 <- read.csv('./Data/EAWE21.csv', header=T)   # Import data
+lm(EARNINGS ~ S, data = eawe21) %>%
+  anova
+```
+(Please the website [https://rc2e.com/linearregressionandanova][rc2e] for more information on regression output.)
+
+[rc2e]: https://rc2e.com/linearregressionandanova
