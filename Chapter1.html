@@ -181,6 +181,109 @@ pre code {
 <li>Ordinary least squares, <em>OLS</em></li>
 </ul>
 </div>
+<div id="file-and-directory-management" class="section level1">
+<h1>File and directory management</h1>
+<pre class="r"><code># File and directory Management
+# Rscript file: \Rscripts\FileManagement.R
+
+# List all the objects in your local workspace using
+ls()</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code># To demonstrate how to clear an object, we first load an `RData` file into the an R workspace
+load(file=url(&quot;http://faculty.gvsu.edu/kilburnw/pollingexcerpt.RData&quot;))
+
+# Two objects, `poll` and `poll16` are loaded into the R workspace
+ls()</code></pre>
+<pre><code>## [1] &quot;poll&quot;   &quot;poll16&quot;</code></pre>
+<pre class="r"><code># Clear the objects
+rm(poll)
+rm(poll16)
+ls()</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code># To clear all the objects in your local workspace, type `rm(list=ls())`
+# rm(list=ls())          # Not run
+
+
+# List all the files in your working directory using
+list.files()</code></pre>
+<pre><code>##  [1] &quot;2_RMarkdown.html&quot;     &quot;2_RMarkdown.Rmd&quot;      &quot;3_GitHub.html&quot;       
+##  [4] &quot;3_GitHub.Rmd&quot;         &quot;4_Visualizing.html&quot;   &quot;4_Visualizing.pdf&quot;   
+##  [7] &quot;4_Visualizing.Rmd&quot;    &quot;5_DataWrangling.html&quot; &quot;5_DataWrangling.Rmd&quot; 
+## [10] &quot;Chapter1.html&quot;        &quot;Chapter1.Rmd&quot;         &quot;Data&quot;                
+## [13] &quot;GitHub.tex&quot;           &quot;name_of_file.png&quot;     &quot;R4DS.Rproj&quot;          
+## [16] &quot;README.html&quot;          &quot;README.md&quot;            &quot;Rscripts&quot;</code></pre>
+<pre class="r"><code># or
+dir()</code></pre>
+<pre><code>##  [1] &quot;2_RMarkdown.html&quot;     &quot;2_RMarkdown.Rmd&quot;      &quot;3_GitHub.html&quot;       
+##  [4] &quot;3_GitHub.Rmd&quot;         &quot;4_Visualizing.html&quot;   &quot;4_Visualizing.pdf&quot;   
+##  [7] &quot;4_Visualizing.Rmd&quot;    &quot;5_DataWrangling.html&quot; &quot;5_DataWrangling.Rmd&quot; 
+## [10] &quot;Chapter1.html&quot;        &quot;Chapter1.Rmd&quot;         &quot;Data&quot;                
+## [13] &quot;GitHub.tex&quot;           &quot;name_of_file.png&quot;     &quot;R4DS.Rproj&quot;          
+## [16] &quot;README.html&quot;          &quot;README.md&quot;            &quot;Rscripts&quot;</code></pre>
+<pre class="r"><code># Get the current working directory
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS&quot;</code></pre>
+<pre class="r"><code># Assign the value of the current working directory to a variable called &quot;old.dir&quot; for later use
+old.dir &lt;- getwd()
+
+# Change to a directory by typing the full path
+setwd(&#39;D:/Documents/GitHub/R4DS/Rscripts&#39;)
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS/Rscripts&quot;</code></pre>
+<pre class="r"><code># Return to the parent directory (one level up the present directory)
+setwd(&#39;..&#39;)       # or `setwd(&#39;../&#39;)`
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS&quot;</code></pre>
+<pre class="r"><code># Change to a subdirectory
+setwd(&#39;./Rscripts&#39;)
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS/Rscripts&quot;</code></pre>
+<pre class="r"><code># Change to a directory by stored variable
+setwd(old.dir)
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS&quot;</code></pre>
+<pre class="r"><code># Use dir.create() to create a directory in the current working directory called &quot;testdir&quot;.
+dir.create(&#39;testdir&#39;)
+dir()</code></pre>
+<pre><code>##  [1] &quot;2_RMarkdown.html&quot;     &quot;2_RMarkdown.Rmd&quot;      &quot;3_GitHub.html&quot;       
+##  [4] &quot;3_GitHub.Rmd&quot;         &quot;4_Visualizing.html&quot;   &quot;4_Visualizing.pdf&quot;   
+##  [7] &quot;4_Visualizing.Rmd&quot;    &quot;5_DataWrangling.html&quot; &quot;5_DataWrangling.Rmd&quot; 
+## [10] &quot;Chapter1.html&quot;        &quot;Chapter1.Rmd&quot;         &quot;Data&quot;                
+## [13] &quot;GitHub.tex&quot;           &quot;name_of_file.png&quot;     &quot;R4DS.Rproj&quot;          
+## [16] &quot;README.html&quot;          &quot;README.md&quot;            &quot;Rscripts&quot;            
+## [19] &quot;testdir&quot;</code></pre>
+<pre class="r"><code># Create a sub-subdirectory
+dir.create(&#39;testdir/subtestdir1&#39;)
+
+# Change to the subdirectory `testdir1` and create a subdirectory here
+setwd(&#39;./testdir&#39;)
+dir()</code></pre>
+<pre><code>## [1] &quot;subtestdir1&quot;</code></pre>
+<pre class="r"><code>dir.create(&#39;subtestdir2&#39;)
+dir()</code></pre>
+<pre><code>## [1] &quot;subtestdir1&quot; &quot;subtestdir2&quot;</code></pre>
+<pre class="r"><code># Moving up one level of the directory (parent directory)
+setwd(&#39;..&#39;)       # or `setwd(&#39;../&#39;)`
+getwd()</code></pre>
+<pre><code>## [1] &quot;D:/Documents/GitHub/R4DS&quot;</code></pre>
+<pre class="r"><code>dir()</code></pre>
+<pre><code>##  [1] &quot;2_RMarkdown.html&quot;     &quot;2_RMarkdown.Rmd&quot;      &quot;3_GitHub.html&quot;       
+##  [4] &quot;3_GitHub.Rmd&quot;         &quot;4_Visualizing.html&quot;   &quot;4_Visualizing.pdf&quot;   
+##  [7] &quot;4_Visualizing.Rmd&quot;    &quot;5_DataWrangling.html&quot; &quot;5_DataWrangling.Rmd&quot; 
+## [10] &quot;Chapter1.html&quot;        &quot;Chapter1.Rmd&quot;         &quot;Data&quot;                
+## [13] &quot;GitHub.tex&quot;           &quot;name_of_file.png&quot;     &quot;R4DS.Rproj&quot;          
+## [16] &quot;README.html&quot;          &quot;README.md&quot;            &quot;Rscripts&quot;            
+## [19] &quot;testdir&quot;</code></pre>
+<pre class="r"><code># Remove a directory together will all its subdirectories
+unlink(&quot;testdir&quot;, recursive=TRUE)
+dir()</code></pre>
+<pre><code>##  [1] &quot;2_RMarkdown.html&quot;     &quot;2_RMarkdown.Rmd&quot;      &quot;3_GitHub.html&quot;       
+##  [4] &quot;3_GitHub.Rmd&quot;         &quot;4_Visualizing.html&quot;   &quot;4_Visualizing.pdf&quot;   
+##  [7] &quot;4_Visualizing.Rmd&quot;    &quot;5_DataWrangling.html&quot; &quot;5_DataWrangling.Rmd&quot; 
+## [10] &quot;Chapter1.html&quot;        &quot;Chapter1.Rmd&quot;         &quot;Data&quot;                
+## [13] &quot;GitHub.tex&quot;           &quot;name_of_file.png&quot;     &quot;R4DS.Rproj&quot;          
+## [16] &quot;README.html&quot;          &quot;README.md&quot;            &quot;Rscripts&quot;</code></pre>
+</div>
 <div id="importing-data" class="section level1">
 <h1>Importing data</h1>
 <div id="importing-data-from-internet" class="section level3">
@@ -274,18 +377,18 @@ dim(AAPL)</code></pre>
 head(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
 ## 2008-01-03  6.978929  7.049643 6.881786   6.961786   842066400      5.952453
-## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.498072
+## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.498071
 ## 2008-01-07  6.473214  6.557143 6.079643   6.344286  2072193200      5.424479
-## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.229351
-## 2008-01-09  6.117857  6.410714 6.010714   6.407143  1813882000      5.478221
+## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.229352
+## 2008-01-09  6.117857  6.410714 6.010714   6.407143  1813882000      5.478223
 ## 2008-01-10  6.342143  6.464286 6.264643   6.357857  1482975200      5.436081</code></pre>
 <pre class="r"><code>tail(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
-## 2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600      24.54056
-## 2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600      24.72790
+## 2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600      24.54055
+## 2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600      24.72791
 ## 2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600      25.37122
 ## 2015-01-23   28.0750   28.4375  27.8825    28.2450   185859200      25.50214
-## 2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000      25.52922
+## 2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000      25.52923
 ## 2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800      24.63536</code></pre>
 <pre class="r"><code>#Obtain time plot of closing price and trading volume
 #The subcommand theme=&quot;white&quot; set the background of the time plot
