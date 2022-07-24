@@ -173,9 +173,11 @@ pre code {
 <div id="key-terms" class="section level2">
 <h2>Key terms</h2>
 <ul>
-<li><code>read.table()</code></li>
-<li><code>pdfetch</code></li>
-<li><code>quantmod</code></li>
+<li>Library:<code>foreign</code>; Command: <code>read.dta()</code></li>
+<li>Library: <code>haven</code>; command: <code>read_sav()</code></li>
+<li>Command: <code>read.table()</code></li>
+<li>Library: <code>pdfetch</code></li>
+<li>Library: <code>quantmod</code></li>
 <li>Residual</li>
 <li>Residual sum of squares, <em>RSS</em></li>
 <li>Ordinary least squares, <em>OLS</em></li>
@@ -286,6 +288,54 @@ dir()</code></pre>
 </div>
 <div id="importing-data" class="section level1">
 <h1>Importing data</h1>
+<div id="loading-data-of-various-file-format" class="section level3">
+<h3>Loading data of various file format</h3>
+<pre class="r"><code># Importing data file of various format
+# Rscript file: /Rscripts/LoadData.R
+
+# Importing Stata data file into R
+# Packages `foreign` required
+library(foreign)               # Load the required package
+
+# Input the Stat data file `wage.dta` 
+# `wage.dta` is a data file accompany the book &quot;An Introduction to Classical Econometric Theory (2000)&quot; by
+# Paul A. Ruud
+
+DTAdata &lt;- read.dta(&quot;./Data/wage.dta&quot;)
+head(DTAdata)</code></pre>
+<pre><code>##       w fe nw un ed ex age wk
+## 1 11.55  1  0  0 12 20  38  1
+## 2  5.00  0  0  0  9  9  24  0
+## 3 12.00  0  0  0 16 15  37  1
+## 4  7.00  0  1  1 14 38  58  0
+## 5 21.15  1  1  0 16 19  41  1
+## 6  6.92  1  0  0 12  4  22  1</code></pre>
+<pre class="r"><code># Importing SPSS data file into R
+# Packages `haven` required
+library(haven)               # Load the required package
+
+# Input the SPSS data file `Cats and Dogs.sav` 
+# `Cats and Dogs.sav` is a data file accompany the book &quot;Discovering Statistics Using IBM SPSS Statistics
+# (2018)&quot; by Andy Field
+
+SPSSdata &lt;- read_sav(&quot;./Data/Cats and Dogs.sav&quot;)
+head(SPSSdata)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##      Animal           Training     Dance
+##   &lt;dbl+lbl&gt;          &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;
+## 1   0 [Cat] 0 [Food as Reward]   1 [Yes]
+## 2   0 [Cat] 0 [Food as Reward]   1 [Yes]
+## 3   0 [Cat] 0 [Food as Reward]   1 [Yes]
+## 4   0 [Cat] 0 [Food as Reward]   1 [Yes]
+## 5   0 [Cat] 0 [Food as Reward]   1 [Yes]
+## 6   0 [Cat] 0 [Food as Reward]   1 [Yes]</code></pre>
+<pre class="r"><code># Display the objects created when importing the data files
+ls()</code></pre>
+<pre><code>## [1] &quot;DTAdata&quot;  &quot;old.dir&quot;  &quot;SPSSdata&quot;</code></pre>
+<pre class="r"><code># Removing the objects
+rm(DTAdata)
+rm(SPSSdata)</code></pre>
+</div>
 <div id="importing-data-from-internet" class="section level3">
 <h3>Importing data from internet</h3>
 <p>The following is adapted from Example 1.13<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> (Digits of <span class="math inline">\(\pi\)</span>) of the book “R by Example” by Jim Albert and Mraia Rizzo. The data file “PiDigits.dat<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>” contains the first 5000 digits of the mathematical constant <span class="math inline">\(\pi =3.1415926535897932384\dots\)</span>. The data is one of the Statistical Reference Datasets provided by the National Institute of Standards and Technology (NIST). 2 Documentation is inserted at the top of the file, and the digits start on line 61. We use the <code>read.table</code> function with the complete URL (web address) and skip=60 to read the data starting at line 61. The URL should be enclosed in quotes and on a single line; otherwise an error message “cannot open the connection” occurs.</p>
@@ -376,20 +426,20 @@ dim(AAPL)</code></pre>
 <pre class="r"><code>#See the first and last 6 row of data
 head(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
-## 2008-01-03  6.978929  7.049643 6.881786   6.961786   842066400      5.952453
-## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.498071
-## 2008-01-07  6.473214  6.557143 6.079643   6.344286  2072193200      5.424479
-## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.229352
-## 2008-01-09  6.117857  6.410714 6.010714   6.407143  1813882000      5.478223
-## 2008-01-10  6.342143  6.464286 6.264643   6.357857  1482975200      5.436081</code></pre>
+## 2008-01-03  6.978929  7.049643 6.881786   6.961786   842066400      5.952451
+## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.498069
+## 2008-01-07  6.473214  6.557143 6.079643   6.344286  2072193200      5.424478
+## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.229350
+## 2008-01-09  6.117857  6.410714 6.010714   6.407143  1813882000      5.478221
+## 2008-01-10  6.342143  6.464286 6.264643   6.357857  1482975200      5.436082</code></pre>
 <pre class="r"><code>tail(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
-## 2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600      24.54055
+## 2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600      24.54056
 ## 2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600      24.72791
 ## 2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600      25.37122
 ## 2015-01-23   28.0750   28.4375  27.8825    28.2450   185859200      25.50214
-## 2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000      25.52923
-## 2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800      24.63536</code></pre>
+## 2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000      25.52922
+## 2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800      24.63537</code></pre>
 <pre class="r"><code>#Obtain time plot of closing price and trading volume
 #The subcommand theme=&quot;white&quot; set the background of the time plot
 #The default is black
@@ -469,12 +519,8 @@ chartSeries(AAPL,theme=&quot;white&quot;)</code></pre>
 </table>
 <p><strong>Obtain predicted values, residuals and anova of <code>lm()</code></strong></p>
 <pre class="r"><code># EARNINGS regress on schooling
-library(dplyr)</code></pre>
-<pre><code>## Warning: replacing previous import &#39;lifecycle::last_warnings&#39; by
-## &#39;rlang::last_warnings&#39; when loading &#39;pillar&#39;</code></pre>
-<pre><code>## Warning: replacing previous import &#39;lifecycle::last_warnings&#39; by
-## &#39;rlang::last_warnings&#39; when loading &#39;tibble&#39;</code></pre>
-<pre class="r"><code>eawe21 &lt;- read.csv(&#39;./Data/EAWE21.csv&#39;, header=T)   # Import data
+library(dplyr)
+eawe21 &lt;- read.csv(&#39;./Data/EAWE21.csv&#39;, header=T)   # Import data
 lm(EARNINGS ~ S, data = eawe21) %&gt;%
   anova</code></pre>
 <pre><code>## Analysis of Variance Table
