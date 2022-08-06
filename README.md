@@ -24,6 +24,10 @@ RStudio has created a large number of cheat sheets, including the one-page R Mar
 <br />
 
 
+**An R Companion for Introduction to Data Mining**  
+https://mhahsler.github.io/Introduction_to_Data_Mining_R_Examples/book/
+
+
 **Contents of the repository**
 
 Chapter 1: Basic R operations

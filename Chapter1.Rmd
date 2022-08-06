@@ -223,6 +223,26 @@ tail(AAPL)
 chartSeries(AAPL,theme="white")
 ```
 
+# Find and Count Unique Values
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+
+nycflights13::flights %>% 
+  print(n = 10, width = Inf)
+
+n_distinct(nycflights13::flights$origin)
+
+unique(nycflights13::flights$origin)
+
+table(nycflights13::flights$origin)
+```
+
+
+
+
+
+# Unclassified contents
 
 
 <br />
