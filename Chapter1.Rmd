@@ -105,6 +105,9 @@ dir()
 ## Loading data of various file format
 ### Importing **Stata** data file using package `foreign`
 
+**Library `foreign` no longer support import of Stata file of version 12 and later. We can use the library `haven` instead. The following contents will be updated later. Please also see the reference from the following link: https://www.marsja.se/how-to-read-and-write-stata-dta-files-in-r-with-haven/.**
+
+
 We first import a **Stata** data file `wage.dta`, which is a data file accompany the book "An Introduction to Classical Econometric Theory (2000)" by Paul A. Ruud.
 ```{r, warning=FALSE}
 # Importing data file of various format

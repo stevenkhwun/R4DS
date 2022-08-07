@@ -293,6 +293,7 @@ dir()</code></pre>
 <h2 number="2.1"><span class="header-section-number">2.1</span> Loading data of various file format</h2>
 <div id="importing-stata-data-file-using-package-foreign" class="section level3" number="2.1.1">
 <h3 number="2.1.1"><span class="header-section-number">2.1.1</span> Importing <strong>Stata</strong> data file using package <code>foreign</code></h3>
+<p><strong>Library <code>foreign</code> no longer support import of Stata file of version 12 and later. We can use the library <code>haven</code> instead. The following contents will be updated later. Please also see the reference from the following link: <a href="https://www.marsja.se/how-to-read-and-write-stata-dta-files-in-r-with-haven/" class="uri">https://www.marsja.se/how-to-read-and-write-stata-dta-files-in-r-with-haven/</a>.</strong></p>
 <p>We first import a <strong>Stata</strong> data file <code>wage.dta</code>, which is a data file accompany the book “An Introduction to Classical Econometric Theory (2000)” by Paul A. Ruud.</p>
 <pre class="r"><code># Importing data file of various format
 # Importing Stata data file into R
@@ -447,20 +448,20 @@ dim(AAPL)</code></pre>
 <pre class="r"><code>#See the first and last 6 row of data
 head(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
-## 2008-01-03  6.978929  7.049643 6.881786   6.961786   842066400      5.944194
-## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.490445
-## 2008-01-07  6.473214  6.557143 6.079643   6.344286  2072193200      5.416955
-## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.222098
+## 2008-01-03  6.978929  7.049643 6.881786   6.961786   842066400      5.944195
+## 2008-01-04  6.837500  6.892857 6.388929   6.430357  1455832000      5.490444
+## 2008-01-07  6.473214  6.557143 6.079643   6.344286  2072193200      5.416954
+## 2008-01-08  6.433571  6.516429 6.100000   6.116071  1523816000      5.222097
 ## 2008-01-09  6.117857  6.410714 6.010714   6.407143  1813882000      5.470623
-## 2008-01-10  6.342143  6.464286 6.264643   6.357857  1482975200      5.428543</code></pre>
+## 2008-01-10  6.342143  6.464286 6.264643   6.357857  1482975200      5.428542</code></pre>
 <pre class="r"><code>tail(AAPL)</code></pre>
 <pre><code>##            AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume AAPL.Adjusted
 ## 2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600      24.50652
-## 2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600      24.69360
-## 2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600      25.33603
+## 2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600      24.69361
+## 2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600      25.33602
 ## 2015-01-23   28.0750   28.4375  27.8825    28.2450   185859200      25.46676
 ## 2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000      25.49381
-## 2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800      24.60119</code></pre>
+## 2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800      24.60120</code></pre>
 <pre class="r"><code>#Obtain time plot of closing price and trading volume
 #The subcommand theme=&quot;white&quot; set the background of the time plot
 #The default is black
