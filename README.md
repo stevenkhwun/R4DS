@@ -11,28 +11,27 @@ https://r4ds.had.co.nz/index.html
 Answers for the exercise solutions can be found here:  
 https://jrnold.github.io/r4ds-exercise-solutions/  
 
-<br />
+
 **Introduction to Open Data Science**  
 Introduction to Open Data Science by The Ocean Health Index Team  
 http://ohi-science.org/data-science-training/index.html
 
-<br />
+
 **Cheat sheets**  
 RStudio has created a large number of cheat sheets, including the one-page R Markdown cheat sheet, which are freely available at the following link:  
 https://www.rstudio.com/resources/cheatsheets/
 
-<br />
+
 **Shortcuts**  
 Keyboard Shortcuts in the RStudio IDE  
 https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts
 
-<br />
+
 **Linear Regression using the Class "lm"**  
 
 1.  Methods for class "lm" objects: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.summaries.html   
 
 2.  Plot class "lm" objects: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html  
-<br />
 
 
 **Machine learning using R**  
