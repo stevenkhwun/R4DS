@@ -1,7 +1,8 @@
 ---
 title: "Basic R operations"
 output:
-  html_document: default
+  html_document:
+    number_sections: true
   word_document: default
   pdf_document: default
 date: '2022-07-23'
@@ -11,7 +12,7 @@ date: '2022-07-23'
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Key terms
+**Key terms**
 
 * Library:`foreign`; Command: `read.dta()`
 * Library: `haven`; command: `read_sav()`
@@ -101,40 +102,43 @@ dir()
 # Importing data
 
 
-### Loading data of various file format
+## Loading data of various file format
+### Importing **Stata** data file using package `foreign`
 
+We first import a **Stata** data file `wage.dta`, which is a data file accompany the book "An Introduction to Classical Econometric Theory (2000)" by Paul A. Ruud.
 ```{r, warning=FALSE}
 # Importing data file of various format
-# Rscript file: /Rscripts/LoadData.R
-
 # Importing Stata data file into R
-# Packages `foreign` required
-library(foreign)               # Load the required package
 
-# Input the Stata data file `wage.dta` 
-# `wage.dta` is a data file accompany the book "An Introduction to Classical Econometric Theory (2000)" by
-# Paul A. Ruud
+library(foreign)               # Load the required package
 
 DTAdata <- read.dta("./Data/wage.dta")
 head(DTAdata)
+```
 
+A further example is to import an **Stata** data file from the internet.
+```{r, warning=FALSE}
 # Further example of importing Stata data file from internet
+
 affairs <- read.dta("http://fmwww.bc.edu/ec-p/data/wooldridge/affairs.dta")
 head(affairs)
+```
 
-##########################################################################################################
+### Importing **SPSS** data file using package `haven`
+
+We import a **SPSS** data file `Cats and Dogs.sav`, which is a data file accompany the book "Discovering Statistics Using IBM SPSS Statistics (2018)" by Andy Field.
+
+```{r, warning=FALSE}
 # Importing SPSS data file into R
-# Packages `haven` required
-library(haven)               # Load the required package
 
-# Input the SPSS data file `Cats and Dogs.sav` 
-# `Cats and Dogs.sav` is a data file accompany the book "Discovering Statistics Using IBM SPSS Statistics
-# (2018)" by Andy Field
+library(haven)               # Load the required package
 
 SPSSdata <- read_sav("./Data/Cats and Dogs.sav")
 head(SPSSdata)
+```
 
-##########################################################################################################
+Objects are created in the `R` environment when importing the data. We can delete these objects by the following commands.
+```{r, warning=FALSE}
 # Display the objects created when importing the data files
 ls()
 
@@ -144,8 +148,9 @@ rm(SPSSdata)
 rm(affairs)
 ```
 
+The complete listing of `R` commands for importing data of various format is stored in the following Rscript file: "/Rscripts/LoadData.R"
 
-### Importing data from internet
+## Importing data from internet
 
 The following is adapted from Example 1.13^[See Jim Albert and Maria Rizzo, _R by Example_, Springer, New York, 2012, pp. 30.] (Digits of $\pi$) of the book "R by Example" by Jim Albert and Mraia Rizzo. The data file “PiDigits.dat^[The text file has been downloaded and saved in the sub-directory "Data."]” contains the first 5000 digits of the mathematical constant $\pi =3.1415926535897932384\dots$. The data is one of the Statistical Reference Datasets provided by the National Institute of Standards and Technology (NIST). 2 Documentation is inserted at the top of the file, and the digits start on line 61. We use the `read.table` function with the complete URL (web address) and skip=60 to read the data starting at line 61. The URL should be enclosed in quotes and on a single line; otherwise an error message “cannot open the connection” occurs.
 
@@ -176,7 +181,7 @@ barplot(prop, xlab="digit", ylab="proportion")
 abline(h = .1)
 ```
 
-### Getting financial data from Yahoo using the package `pdfetch`
+## Getting financial data from Yahoo using the package `pdfetch`
 
 ```{r, message=FALSE, warning=FALSE}
 # Getting financial data from Yahoo using the package `pdfetch`
@@ -193,7 +198,7 @@ plot(HKStocks$"0005.HK", las=2)
   
 <br />
 
-### Retrieving economic data from the internet using the package `quantmod`
+## Retrieving economic data from the internet using the package `quantmod`
 
 The package `quantmod` is used to retrieve financial data from the internet such as Yahoo Finance and the Federal Reserve Economic Data (FRED) of Federal Reserve Bak of St. Louis.  
 <br />
