@@ -3,39 +3,46 @@ R for Data Science
 
 This repository contains my notes on application of R in data science.
 
-References:
+_**References**_:
 
 **R for Data Science by Garrett Grolemund and Hadley Wickham**  
-[R for Data Science][R4DS]: A thorough and well-presented online book covering a complete foundation of R. Largely focuses on data types and workflow. Answers for the exercise solutions can be found here: https://jrnold.github.io/r4ds-exercise-solutions/  
+A thorough and well-presented online book covering a complete foundation of R. Largely focuses on data types and workflow.
+https://r4ds.had.co.nz/index.html  
+Answers for the exercise solutions can be found here:  
+https://jrnold.github.io/r4ds-exercise-solutions/  
+
 <br />
-[Introduction to Open Data Science][OpenDataScience] by The Ocean Health Index Team  
+**Introduction to Open Data Science**  
+Introduction to Open Data Science by The Ocean Health Index Team  
+http://ohi-science.org/data-science-training/index.html
+
 <br />
 **Cheat sheets**  
-RStudio has created a large number of cheat sheets, including the one-page R Markdown cheat sheet, which are freely available at [https://www.rstudio.com/resources/cheatsheets/][RStudioCheatSheet].  
+RStudio has created a large number of cheat sheets, including the one-page R Markdown cheat sheet, which are freely available at the following link:  
+https://www.rstudio.com/resources/cheatsheets/
+
 <br />
 **Shortcuts**  
-[Keyboard Shortcuts in the RStudio IDE][ShortCuts]  
+Keyboard Shortcuts in the RStudio IDE  
+https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts
+
 <br />
-**The Class "lm"**  
+**Linear Regression using the Class "lm"**  
 
-1.  Methods for class "lm" objects: [https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.summaries.html][lmMethods]   
+1.  Methods for class "lm" objects: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.summaries.html   
 
-2.  Plot class "lm" objects: [https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html][lmPlot]  
+2.  Plot class "lm" objects: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html  
 <br />
 
 
-**An R Companion for Introduction to Data Mining**  
+**Machine learning using R**  
+An R Companion for Introduction to Data Mining by Michael Hahsler based on the book Introduction to Data Mining by Tan, Steinbach and Kumar.  
 https://mhahsler.github.io/Introduction_to_Data_Mining_R_Examples/book/
 
 
-**Contents of the repository**
+<br />
+
+_**Contents of the repository**_
 
 Chapter 1: Basic R operations
 
-
-[OpenDataScience]: http://ohi-science.org/data-science-training/index.html
-[ShortCuts]: https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts
-[R4DS]: https://r4ds.had.co.nz/index.html
-[RStudioCheatSheet]: https://www.rstudio.com/resources/cheatsheets/
-[lmMethods]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.summaries.html
-[lmPlot]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/plot.lm.html
