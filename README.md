@@ -14,6 +14,13 @@ Answers for the exercise solutions can be found here:
 https://jrnold.github.io/r4ds-exercise-solutions/  
 
 
+**Data Analysis and Prediction Algorithms with R by Rafael A. Irizarry**  
+https://rafalab.github.io/dsbook/
+
+and the GitHub site of the book:  
+https://github.com/rafalab/dsbook
+
+
 **Introduction to Open Data Science**  
 Introduction to Open Data Science by The Ocean Health Index Team  
 http://ohi-science.org/data-science-training/index.html
