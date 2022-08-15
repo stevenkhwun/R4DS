@@ -21,6 +21,9 @@ and the GitHub site of the book:
 https://github.com/rafalab/dsbook
 
 
+**An Oxford University Thesis Template for R Markdown**\
+https://ulyngs.github.io/oxforddown/index.html
+
 **Introduction to Open Data Science**  
 Introduction to Open Data Science by The Ocean Health Index Team  
 http://ohi-science.org/data-science-training/index.html
