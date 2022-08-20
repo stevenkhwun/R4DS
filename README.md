@@ -1,7 +1,7 @@
 # R4DS
 R for Data Science
 
-**IMPORTANT: This repository is still under construction and the contents are not complete and may not be accurate.**
+## About the repository##
 
 This repository contains my notes on application of R in data science.
 
