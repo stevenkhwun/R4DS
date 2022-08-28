@@ -1,0 +1,92 @@
+---
+title: "Linear regression"
+output:
+  html_document:
+    number_sections: true
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Suppose we have three vectors $y$, $x_1$ and $x_2$ and we want to fit the model:
+
+$$Y=\beta_0+\beta_1{x_1}+\beta_2{x_2}+u$$
+
+```{r}
+# Preparing the data
+x1 <- seq(1,10,length=25)
+x2 <- runif(25,3,7)
+y <- 4 + 2*x1 + 7*x2 + rnorm(25,0,1)
+mydata <- data.frame(y=y, x1=x1, x2=x2)
+head(mydata)
+```
+
+# Linear regression using the command `lm`
+
+We run the regression using the command `lm`:
+
+```{r}
+# Run the regression
+out <- lm(y ~ x1 + x2, data = mydata)
+out                                   # Basic regression result
+names(out)                            # Parameters attached to the object 'out'
+
+# Obtain the particular estimates
+out$coefficients                      # All the coefficients
+out$coefficients[2]                   # Coefficient for x1
+```
+
+More detailed results can be obtained by the commands `summary` and `anova`.
+
+```{r}
+# Summary of the regression result
+s <- summary(out)            
+summary(out)                 # Use just 'summary()' to display the result
+# ANOVA table
+a <- anova(out)              # Anova table
+print(a)                     # Use command 'print' to display the result
+```
+
+Different parameters are attached to the object `s` and `a`. We can display the attached parameters by the `names` command. and we can extract different information of by the following commands:\
+
+**Parameters available in the object `summary()`**
+
+```{r}
+# Parameters available in the object 'summary()'
+names(s)           # Summary of the regression
+# Coefficients of the regression
+s$coefficients       # Give more details than 'out$coefficients"
+s$coefficients[2]    # Coefficient of x1
+s$coefficients[2,4]  # Pr(>|t|) for x1
+```
+
+**Parameters available in the object `anova()`**
+```{r}
+# Parameters available in the object 'anova()'
+names(a)           # Anova of the regression
+a                  # The ANOVA table
+a$`Sum Sq`         # Displaying all the sums of squares
+a$`Sum Sq`[3]      # Displaying SSR
+sum(a$`Sum Sq`)    # Calculating SST
+```
+
+Finally, the **AIC statistics** can be obtained by the command `extractAIC`
+```{r}
+# AIC statistics
+extractAIC(out)
+```
+
+# Linear regression by the command `lsfit`
+
+Here is the another way to do linear regression.
+
+```{r}
+X <- cbind(x1,x2)
+temp <- lsfit(X,y)
+ls.print(temp)
+names(temp)
+
