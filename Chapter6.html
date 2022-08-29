@@ -181,12 +181,12 @@ y &lt;- 4 + 2*x1 + 7*x2 + rnorm(25,0,1)
 mydata &lt;- data.frame(y=y, x1=x1, x2=x2)
 head(mydata)</code></pre>
 <pre><code>##          y    x1       x2
-## 1 47.92863 1.000 5.984143
-## 2 37.18038 1.375 4.457170
-## 3 39.67256 1.750 4.677910
-## 4 35.02365 2.125 3.785452
-## 5 57.75949 2.500 6.834828
-## 6 38.49147 2.875 4.156652</code></pre>
+## 1 48.82963 1.000 6.265593
+## 2 53.28246 1.375 6.960441
+## 3 40.21494 1.750 4.508026
+## 4 30.75368 2.125 3.334334
+## 5 48.15319 2.500 5.604036
+## 6 37.92787 2.875 4.052168</code></pre>
 <div id="linear-regression-using-the-command-lm" class="section level1" number="1">
 <h1 number="1"><span class="header-section-number">1</span> Linear regression using the command <code>lm</code></h1>
 <p>We run the regression using the command <code>lm</code>:</p>
@@ -199,7 +199,7 @@ out                                   # Basic regression result</code></pre>
 ## 
 ## Coefficients:
 ## (Intercept)           x1           x2  
-##       2.577        1.897        7.383</code></pre>
+##       3.933        2.004        6.919</code></pre>
 <pre class="r"><code>names(out)                            # Parameters attached to the object &#39;out&#39;</code></pre>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
@@ -207,10 +207,10 @@ out                                   # Basic regression result</code></pre>
 <pre class="r"><code># Obtain the particular estimates
 out$coefficients                      # All the coefficients</code></pre>
 <pre><code>## (Intercept)          x1          x2 
-##    2.577090    1.897178    7.382600</code></pre>
+##    3.932686    2.003733    6.919430</code></pre>
 <pre class="r"><code>out$coefficients[2]                   # Coefficient for x1</code></pre>
 <pre><code>##       x1 
-## 1.897178</code></pre>
+## 2.003733</code></pre>
 <p>More detailed results can be obtained by the commands <code>summary</code> and <code>anova</code>.</p>
 <pre class="r"><code># Summary of the regression result
 s &lt;- summary(out)            
@@ -220,20 +220,20 @@ summary(out)                 # Use just &#39;summary()&#39; to display the resul
 ## lm(formula = y ~ x1 + x2, data = mydata)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.04361 -0.47090 -0.03851  0.40624  1.51228 
+##     Min      1Q  Median      3Q     Max 
+## -1.8436 -0.8887  0.1958  0.6148  1.5828 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.57709    0.72127   3.573   0.0017 ** 
-## x1           1.89718    0.05265  36.033   &lt;2e-16 ***
-## x2           7.38260    0.12762  57.847   &lt;2e-16 ***
+## (Intercept)   3.9327     1.1836   3.323  0.00309 ** 
+## x1            2.0037     0.0801  25.017  &lt; 2e-16 ***
+## x2            6.9194     0.1953  35.430  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7113 on 22 degrees of freedom
-## Multiple R-squared:  0.9955, Adjusted R-squared:  0.995 
-## F-statistic:  2412 on 2 and 22 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.036 on 22 degrees of freedom
+## Multiple R-squared:  0.9855, Adjusted R-squared:  0.9841 
+## F-statistic: 745.6 on 2 and 22 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code># ANOVA table
 a &lt;- anova(out)              # Anova table
 print(a)                     # Use command &#39;print&#39; to display the result</code></pre>
@@ -241,9 +241,9 @@ print(a)                     # Use command &#39;print&#39; to display the result
 ## 
 ## Response: y
 ##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## x1         1  747.96  747.96  1478.4 &lt; 2.2e-16 ***
-## x2         1 1692.96 1692.96  3346.2 &lt; 2.2e-16 ***
-## Residuals 22   11.13    0.51                      
+## x1         1  253.26  253.26  235.97  3.04e-13 ***
+## x2         1 1347.23 1347.23 1255.27 &lt; 2.2e-16 ***
+## Residuals 22   23.61    1.07                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Different parameters are attached to the object <code>s</code> and <code>a</code>. We can display the attached parameters by the <code>names</code> command. and we can extract different information of by the following commands:<br />
@@ -257,13 +257,13 @@ names(s)           # Summary of the regression</code></pre>
 <pre class="r"><code># Coefficients of the regression
 s$coefficients       # Give more details than &#39;out$coefficients&quot;</code></pre>
 <pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
-## (Intercept) 2.577090 0.72127047  3.572987 1.698465e-03
-## x1          1.897178 0.05265151 36.032742 4.657755e-21
-## x2          7.382600 0.12762355 57.846685 1.557102e-25</code></pre>
+## (Intercept) 3.932686 1.18358211  3.322698 3.090957e-03
+## x1          2.003733 0.08009542 25.016823 1.183470e-17
+## x2          6.919430 0.19529958 35.429824 6.710918e-21</code></pre>
 <pre class="r"><code>s$coefficients[2]    # Coefficient of x1</code></pre>
-<pre><code>## [1] 1.897178</code></pre>
+<pre><code>## [1] 2.003733</code></pre>
 <pre class="r"><code>s$coefficients[2,4]  # Pr(&gt;|t|) for x1</code></pre>
-<pre><code>## [1] 4.657755e-21</code></pre>
+<pre><code>## [1] 1.18347e-17</code></pre>
 <p><strong>Parameters available in the object <code>anova()</code></strong></p>
 <pre class="r"><code># Parameters available in the object &#39;anova()&#39;
 names(a)           # Anova of the regression</code></pre>
@@ -273,21 +273,21 @@ names(a)           # Anova of the regression</code></pre>
 ## 
 ## Response: y
 ##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## x1         1  747.96  747.96  1478.4 &lt; 2.2e-16 ***
-## x2         1 1692.96 1692.96  3346.2 &lt; 2.2e-16 ***
-## Residuals 22   11.13    0.51                      
+## x1         1  253.26  253.26  235.97  3.04e-13 ***
+## x2         1 1347.23 1347.23 1255.27 &lt; 2.2e-16 ***
+## Residuals 22   23.61    1.07                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre class="r"><code>a$`Sum Sq`         # Displaying all the sums of squares</code></pre>
-<pre><code>## [1]  747.96490 1692.95692   11.13042</code></pre>
+<pre><code>## [1]  253.25750 1347.22575   23.61158</code></pre>
 <pre class="r"><code>a$`Sum Sq`[3]      # Displaying SSR</code></pre>
-<pre><code>## [1] 11.13042</code></pre>
+<pre><code>## [1] 23.61158</code></pre>
 <pre class="r"><code>sum(a$`Sum Sq`)    # Calculating SST</code></pre>
-<pre><code>## [1] 2452.052</code></pre>
+<pre><code>## [1] 1624.095</code></pre>
 <p>Finally, the <strong>AIC statistics</strong> can be obtained by the command <code>extractAIC</code></p>
 <pre class="r"><code># AIC statistics
 extractAIC(out)</code></pre>
-<pre><code>## [1]   3.00000 -14.22984</code></pre>
+<pre><code>## [1] 3.000000 4.571537</code></pre>
 </div>
 <div id="linear-regression-by-the-command-lsfit" class="section level1" number="2">
 <h1 number="2"><span class="header-section-number">2</span> Linear regression by the command <code>lsfit</code></h1>
@@ -295,17 +295,88 @@ extractAIC(out)</code></pre>
 <pre class="r"><code>X &lt;- cbind(x1,x2)
 temp &lt;- lsfit(X,y)
 ls.print(temp)</code></pre>
-<pre><code>## Residual Standard Error=0.7113
-## R-Square=0.9955
-## F-statistic (df=2, 22)=2412.32
+<pre><code>## Residual Standard Error=1.036
+## R-Square=0.9855
+## F-statistic (df=2, 22)=745.6221
 ## p-value=0
 ## 
 ##           Estimate Std.Err t-value Pr(&gt;|t|)
-## Intercept   2.5771  0.7213  3.5730   0.0017
-## x1          1.8972  0.0527 36.0327   0.0000
-## x2          7.3826  0.1276 57.8467   0.0000</code></pre>
+## Intercept   3.9327  1.1836  3.3227   0.0031
+## x1          2.0037  0.0801 25.0168   0.0000
+## x2          6.9194  0.1953 35.4298   0.0000</code></pre>
 <pre class="r"><code>names(temp)</code></pre>
 <pre><code>## [1] &quot;coefficients&quot; &quot;residuals&quot;    &quot;intercept&quot;    &quot;qr&quot;</code></pre>
+</div>
+<div id="example-using-real-data-set" class="section level1" number="3">
+<h1 number="3"><span class="header-section-number">3</span> Example using real data set</h1>
+<p>The following is the individual wages example in Chapter 2 of the book ‘A Guide to Modern Econometrics’ by Marno Verbeek. The dataset <a href="Data/wages1.txt">wages1.dta</a> is used.</p>
+<pre class="r"><code># Load the required package &#39;Haven&#39; which is part of the &#39;Tidyverse&#39; package
+library(haven)
+wages1 &lt;- read_dta(&#39;Data/wages1.dta&#39;)
+head(wages1)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   exper  male school  wage
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     9     0     13  6.32
+## 2    12     0     12  5.48
+## 3    11     0     11  3.64
+## 4     9     0     14  4.59
+## 5     8     0     14  2.42
+## 6     9     0     14  2.09</code></pre>
+<pre class="r"><code>summary(wages1)</code></pre>
+<pre><code>##      exper             male            school           wage         
+##  Min.   : 1.000   Min.   :0.0000   Min.   : 3.00   Min.   : 0.07656  
+##  1st Qu.: 7.000   1st Qu.:0.0000   1st Qu.:11.00   1st Qu.: 3.62157  
+##  Median : 8.000   Median :1.0000   Median :12.00   Median : 5.20578  
+##  Mean   : 8.043   Mean   :0.5237   Mean   :11.63   Mean   : 5.75759  
+##  3rd Qu.: 9.000   3rd Qu.:1.0000   3rd Qu.:12.00   3rd Qu.: 7.30451  
+##  Max.   :18.000   Max.   :1.0000   Max.   :16.00   Max.   :39.80892</code></pre>
+<p>Run a simple linear regression of <code>wage</code> on the dummy variable <code>male</code>:</p>
+<pre class="r"><code># Simple regression model
+srm &lt;- lm(wage ~ male, data = wages1)
+summary(srm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ male, data = wages1)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -6.160 -2.102 -0.554  1.487 33.496 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.14692    0.08122   63.37   &lt;2e-16 ***
+## male         1.16610    0.11224   10.39   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.217 on 3292 degrees of freedom
+## Multiple R-squared:  0.03175,    Adjusted R-squared:  0.03145 
+## F-statistic: 107.9 on 1 and 3292 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Run a multiple linear regression of <code>wage</code> on <code>male</code>, <code>school</code> and <code>exper</code>:</p>
+<pre class="r"><code># Multiple regression model
+mrm &lt;- lm(wage ~ male + school + exper, data = wages1)
+summary(mrm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = wage ~ male + school + exper, data = wages1)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -7.654 -1.967 -0.457  1.444 34.194 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -3.38002    0.46498  -7.269 4.50e-13 ***
+## male         1.34437    0.10768  12.485  &lt; 2e-16 ***
+## school       0.63880    0.03280  19.478  &lt; 2e-16 ***
+## exper        0.12483    0.02376   5.253 1.59e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.046 on 3290 degrees of freedom
+## Multiple R-squared:  0.1326, Adjusted R-squared:  0.1318 
+## F-statistic: 167.6 on 3 and 3290 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 
 

@@ -89,4 +89,34 @@ X <- cbind(x1,x2)
 temp <- lsfit(X,y)
 ls.print(temp)
 names(temp)
+```
+
+
+# Example using real data set
+
+The following is the individual wages example in Chapter 2 of the book 'A Guide to Modern Econometrics' by Marno Verbeek. The dataset [wages1.dta](Data/wages1.txt) is used.
+
+```{r warning=FALSE}
+# Load the required package 'Haven' which is part of the 'Tidyverse' package
+library(haven)
+wages1 <- read_dta('Data/wages1.dta')
+head(wages1)
+summary(wages1)
+```
+
+Run a simple linear regression of `wage` on the dummy variable `male`:
+
+```{r}
+# Simple regression model
+srm <- lm(wage ~ male, data = wages1)
+summary(srm)
+```
+
+Run a multiple linear regression of `wage` on `male`, `school` and `exper`:
+
+```{r}
+# Multiple regression model
+mrm <- lm(wage ~ male + school + exper, data = wages1)
+summary(mrm)
+```
 
