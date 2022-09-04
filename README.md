@@ -26,7 +26,12 @@ https://ulyngs.github.io/oxforddown/index.html
 
 **Introduction to Open Data Science**  
 Introduction to Open Data Science by The Ocean Health Index Team  
-http://ohi-science.org/data-science-training/index.html
+http://ohi-science.org/data-science-training/index.html\
+
+
+**R Markdown: The Definitive Guide**\
+[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, Garrett Grolemund
+
 
 
 **Cheat sheets**  
