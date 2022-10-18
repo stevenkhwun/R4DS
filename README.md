@@ -20,6 +20,9 @@ https://rafalab.github.io/dsbook/
 and the GitHub site of the book:  
 https://github.com/rafalab/dsbook
 
+**R for Graduate Students by Y. Wendy Huynh**\
+https://bookdown.org/yih_huynh/Guide-to-R-Book/
+
 
 **An Oxford University Thesis Template for R Markdown**\
 https://ulyngs.github.io/oxforddown/index.html
