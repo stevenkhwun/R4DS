@@ -1,0 +1,126 @@
+---
+title: "apply(), lapply(), sapply(), and tapply() in R"
+output:
+  html_document:
+    number_sections: true
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# `apply()` function
+
+The `apply()` function lets us apply a function to the rows or columns of a matrix or data frame. This function takes matrix or data frame as an argument along with function and whether it has to be applied by row or column and returns the result in the form of a vector or array or list of values obtained.
+
+**Syntax**: apply(x,margin,function)
+
+**Parameters**:
+
+*   **x**: input array including matrix
+*   **margin**: if the margin is 1 function is applied across row, if the margin is 2 it is applied across the column
+*   **function**: the function that is to be applied on input data
+
+
+```{r}
+# create sample data
+sample_matrix <- matrix(C<-(1:10),nrow=3, ncol=10)
+sample_matrix
+
+# Use apply() function across row to find sum
+apply( sample_matrix, 1, sum)
+
+# use apply() function across column to find mean
+apply( sample_matrix, 2, mean)
+
+```
+
+# `lapply()` function
+
+The `lapply()` function helps us in applying functions on list objects and returns a list object of the same length. The `lapply()` function in the R Language takes a list, vector, or data frame as input and gives output in the form of a list object. Since the `lapply()` function applies a certain operation to all the elements of the list it doesn’t need a MARGIN.
+
+**Syntax**: lapply(x,function)
+
+**Parameters**:
+
+*   **x**: input array including matrix
+*   **function**: the function that is to be applied on input data
+
+
+```{r}
+# create sample data
+names <- c("priyank", "abhiraj","pawananjani", "sudhanshu","devraj")
+names
+
+# apply lapply() function
+# convert the names to upper case by the function 'toupper'
+lapply(names, toupper)
+```
+
+We can use `unlist()` to convert the list into a vector.
+```{r}
+# Create movies datat
+movies <- c("SPYDERMAN","BATMAN","VERTIGO","CHINATOWN")
+```
+
+```{r}
+# Convert to lower case by 'tolower()' function
+movies_lower <-lapply(movies, tolower)
+movies_lower
+```
+
+```{r}
+# Convert back to a vector by 'unlist()' function
+movies_lower <-unlist(lapply(movies,tolower))
+movies_lower
+```
+
+# `sapply()` function
+
+The `sapply()` function helps us in applying functions on a list, vector, or data frame and returns an array or matrix object of the same length. The `sapply()` function in the R Language takes a list, vector, or data frame as input and gives output in the form of an array or matrix object. Since the `sapply()` function applies a certain operation to all the elements of the object it doesn’t need a MARGIN. It is the same as `lapply()` with the only difference being the type of return object.
+
+**Syntax**: sapply(x,function)
+
+**Parameters**:
+
+*   **x**: input array including matrix
+*   **function**: the function that is to be applied on input data
+
+```{r}
+# create sample data
+sample_data<- data.frame( x=c(1,2,3,4,5,6), y=c(3,2,4,2,34,5))
+sample_data
+
+# apply sapply() function
+sapply(sample_data, max)
+```
+
+# `tapply()` function
+
+The `tapply()` helps us to compute statistical measures (mean, median, min, max, etc..) or a self-written function operation for each factor variable in a vector. It helps us to create a subset of a vector and then apply some functions to each of the subsets. For example, in an organization, if we have data of salary of employees and we want to find the mean salary for male and female, then we can use `tapply()` function with male and female as factor variable gender.
+
+**Syntax**: tapply(x,index,function)
+
+**Parameters**:
+
+*   **x**: input array including matrix
+*   **index**: the factor vector that helps us distinguish the data
+*   **function**: the function that is to be applied on input data
+
+Here, is a basic example showcasing the use of the `tapply()` function on the diamonds dataset which is provided by the `tidyverse` package library.
+
+```{r, message=FALSE}
+# load library tidyverse
+library(tidyverse)
+```
+
+```{r}
+# print head of diamonds dataset
+head(diamonds)
+
+# apply tapply function to get average price by cut
+tapply(diamonds$price, diamonds$cut, mean)
+```
