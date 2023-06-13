@@ -3,7 +3,7 @@ title: "Python code chunks in R Markdown"
 date: '2018-02-22'
 ---
 
-This templates is downloaded from see ‘[Other language engines](https://bookdown.org/yihui/rmarkdown/language-engines.html)’ in Yihui Xie’s R Markdown: The Definitive Guide. Further information can be found [here](https://ulyngs.github.io/oxforddown/index.html).
+This templates is downloaded from ‘[Other language engines](https://bookdown.org/yihui/rmarkdown/language-engines.html)’ in Yihui Xie’s R Markdown: The Definitive Guide. Further information can be found [here](https://ulyngs.github.io/oxforddown/index.html).
 
 
 ## A normal R code chunk
@@ -80,3 +80,19 @@ PyDf = pd.DataFrame(
   index = [1, 2, 3]
 )
 PyDf
+```
+
+
+
+```{python}
+usvideos_url = (
+"https://raw.githubusercontent.com/OrysyaStus/SeismicBlog/master/Data_Visualizations"
+"/Dynamic_Visuals_Using_Date_Range_Slicers_Pt1/data/USvideos.csv"
+)
+usvideos = pd.read_csv(usvideos_url)
+usvideos
+```
+
+```{python}
+usvideos[["video_id", "title"]]
+```
