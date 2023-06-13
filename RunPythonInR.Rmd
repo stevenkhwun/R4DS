@@ -109,11 +109,5 @@ sp500 = pd.read_csv(sp500)
 sp500.count()
 ```
 
-```{python}
-airline = "https://raw.githubusercontent.com/stevenkhwun/Data/main/PS4DS/airline_stats.csv"
-airline = pd.read_csv(airline)
-airline.count()
-```
-
 
 
