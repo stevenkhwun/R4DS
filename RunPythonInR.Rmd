@@ -98,19 +98,22 @@ usvideos[["video_id", "title"]]
 ```
 
 ```{python}
-url = "https://raw.githubusercontent.com/stevenkhwun/PS4DS/main/four_sessions.csv"
+url = "https://raw.githubusercontent.com/stevenkhwun/Data/main/PS4DS/four_sessions.csv"
 sessions = pd.read_csv(url)
 sessions
 ```
 
 ```{python}
-sp500 = "https://raw.githubusercontent.com/stevenkhwun/PS4DS/main/sp500_data.csv.gz"
+sp500 = "https://raw.githubusercontent.com/stevenkhwun/Data/main/PS4DS/sp500_data.csv.gz"
 sp500 = pd.read_csv(sp500)
 sp500.count()
 ```
 
-
-
+```{python}
+airline = "https://raw.githubusercontent.com/stevenkhwun/Data/main/PS4DS/airline_stats.csv"
+airline = pd.read_csv(airline)
+airline.count()
+```
 
 
 
