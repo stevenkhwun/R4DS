@@ -266,6 +266,45 @@ usvideos</code></pre>
 ## 35348  Es9CfWMmPRU        $120 McGriddle Taste Test | FANCY FAST FOOD
 ## 
 ## [35349 rows x 2 columns]</code></pre>
+<pre class="python"><code>url = &quot;https://raw.githubusercontent.com/stevenkhwun/PS4DS/main/four_sessions.csv&quot;
+sessions = pd.read_csv(url)
+sessions</code></pre>
+<pre><code>##       Page  Time
+## 0   Page 1   164
+## 1   Page 2   178
+## 2   Page 3   175
+## 3   Page 4   155
+## 4   Page 1   172
+## 5   Page 2   191
+## 6   Page 3   193
+## 7   Page 4   166
+## 8   Page 1   177
+## 9   Page 2   182
+## 10  Page 3   171
+## 11  Page 4   164
+## 12  Page 1   156
+## 13  Page 2   185
+## 14  Page 3   163
+## 15  Page 4   170
+## 16  Page 1   195
+## 17  Page 2   177
+## 18  Page 3   176
+## 19  Page 4   168</code></pre>
+<pre class="python"><code>sp500 = &quot;https://raw.githubusercontent.com/stevenkhwun/PS4DS/main/sp500_data.csv.gz&quot;
+sp500 = pd.read_csv(sp500)
+sp500.count()</code></pre>
+<pre><code>## Unnamed: 0    5647
+## ADS           5647
+## CA            5647
+## MSFT          5647
+## RHT           5647
+##               ... 
+## CELG          5647
+## GILD          5647
+## REGN          5647
+## VRTX          5647
+## HSIC          5647
+## Length: 518, dtype: int64</code></pre>
 </div>
 
 
