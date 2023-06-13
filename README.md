@@ -1,5 +1,7 @@
 # R4DS
-R for Data Science
+R for Data Science\
+(Last updated: 13.06.2023)
+
 
 ### About the repository
 
