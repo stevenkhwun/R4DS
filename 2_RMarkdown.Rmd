@@ -1,10 +1,17 @@
 ---
 title: "RMarkdown"
+author: "Steven Wun"
+date: "Last updated at `r Sys.Date()`"
 output:
-  html_document: default
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    toc_float:
+      collapsed: no
+      #smooth_scroll: yes
   word_document: default
   pdf_document: default
-date: '2022-07-01'
 ---
 
 ```{r setup, include=FALSE}
@@ -17,14 +24,14 @@ First we demonstrate how to create a simple RMarkdown file with output to HTML f
 
 
 
-### Procedures to create a RMarkdown file  
+# Procedures to create a RMarkdown file  
 
 1. File -> New File -> RMarkdown ... -> Document of output format HTML, click `OK`.
 2. A template RMarkdown file is created. There are white and grey sections. R code is in grey sections, and other text is in white.
 3. "Knit HTML" by clicking the blue yarn at the top of the RMarkdown file and the HTML document will be created.
 
 
-### Codes used in the RMarkdown file
+# Codes used in the RMarkdown file
 *   **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These code chunks are shown in the document and result of the code chunks will be followed.
 *   The R code chunks with the option `echo=FALSE`, such as `{r pressure, echo=FALSE}, the printing of the code chunks will be suppressed and only the result will be shown.
 *   The code chunks could be printed without evaluation by enclosing the code beginning with 3 backticks and the type of programme, like ````r`, and ended with 3 backticks.
@@ -35,7 +42,7 @@ For RStudio built in reference: Go to Help > Markdown Quick Reference.
 <br />
 You can get further reference at http://rmarkdown.rstudio.com/
 
-### Knite to PDF and use LaTeX commands
+# Knite to PDF and use LaTeX commands
 In order to output document in PDF format, we need to install MikTeX and run a R code. These steps just need to perform once.
 
 1.  Install MikTeX.
@@ -44,7 +51,7 @@ In order to output document in PDF format, we need to install MikTeX and run a R
        tinytex::install_tinytex()
     ```
 
-### Some Markdown tricks
+# Some Markdown tricks
 
 **Use `eqnarray` to align the equal sign in a series of equation**
 
@@ -98,6 +105,119 @@ __underline__
 __*underline italics*__
 
 $\underline{This\space sentence\space underlined\space using\space \LaTeX}$
+
+
+# R Markdown Syntax: Hyperlinks, Images & Tables
+
+This section is adapted from the article [R Markdown Syntax: Hyperlinks, Images & Tables](https://ucsbcarpentry.github.io/R-markdown/04-links-images-tables/index.html) in the [Authoring scientific publications with R Markdown](https://ucsbcarpentry.github.io/R-markdown/index.html) website.
+
+## Creating Hyperlinks
+
+Hyperlinks are created using the syntax `[text](link)` with no spaces in between the parentheses and the square brackets.
+
+For example:
+
+```{r eval=FALSE}
+[RStudio](https://www.rstudio.com)
+```
+
+which will give:
+
+[RStudio](https://www.rstudio.com)
+
+## Inserting Images
+
+You can add images to an R Markdown report using markdown syntax as follows: `![Image Name](path-to-image-here)`
+
+You’ll notice this format is exactly the same as hyperlinks, but with the addition of an `!` before the brackets and parentheses.
+
+> Tip: Paths to Files\
+The specification of the list of folders to travel and the file name is called a path. A path that starts at the root folder of the computer is called an <b>absolute path</b>. A <b>relative path</b> starts at a given folder and provides the folders and file starting from that folder. Using relative paths will make a number of things easier. A path is made up of folder names. If the path is to a file, then the path will ends with a file name. The folders and files of a path are separated by a directory separator. There are a few special directory names. A single period `.` indicates the current working directory. Two periods `..` indicates moving up a directory.
+
+However, when you knit the report, RStudio will only be able to find your image if you have placed it in the right place - RELATIVE to your .Rmd file. This is where good file management becomes extremely important. For example, when your .Rmd file is in the working directory `R4DS` and the figure is in the `figs` subfolder of the folder `R4DS`. In that case, make sure your path starts with `./figs/` along with the correct image name and file extension. Also the closing bracket and the opening parentheses should be close to each other, without any spaces in between.
+
+
+To start let’s identify Fig. 1, which is in the folder `R4DS/figs`. We will insert the image right after that. This image will have the caption labeled “FIGURE 1 (in the folder `R4DS/figs`” (that we will be pasting in the chat). We need that caption to render the image.
+
+The markdown should look like:
+
+```{r eval=FALSE}
+![FIGURE 1 - in the folder `R4DS/figs`](./figs/fig1_paper.jpg)
+```
+
+This will output as:
+
+![FIGURE 1 - in the folder `R4DS/figs`](./figs/fig1_paper.jpg)
+
+We now insert another figure, which is in the folder `R4DS`, that is the same as where the .Rmd file is. The markdown code is:
+
+```{r eval=FALSE}
+![FIGURE 2 - in the folder `R4DS`](name_of_file.png)
+```
+
+<b>Note</b>: A preview of your image should pop up automatically in RStudio if you have the correct relative path. But this will be only true if you type out the code, not if you copy and paste it.
+
+and the output is:
+
+![FIGURE 2 - in the folder `R4DS`](name_of_file.png)
+
+
+### Resizing Images
+
+The image you just added looks a little too big, right? We can resize it by adjusting the width and height ratio. Let’s say we want this image to be half of the original size. In order to do that, we will have to add to the syntax:
+
+
+```{r eval=FALSE}
+![FIGURE 3 - Resizing the figure.](./figs/fig1_paper.jpg){width=50% height=50%}
+```
+
+and the output is:
+
+![FIGURE 3 - Resizing the figure.](./figs/fig1_paper.jpg){width=50% height=50%}
+
+
+## Inserting table
+
+We can also use markdown syntax to insert a formatted table into our document. The basic syntax to insert a table looks like this:
+
+```{r eval=FALSE}
+Column Header | Column Header
+---           | ---              
+Cell 1        |  Cell 2       
+Cell 3        |  Cell 4   
+```
+
+Start with the column names/headers. Separate columns with the pipe ( | ) symbol. Right below the column headers use at least three dashes to separate the headers from the cells of the table. Then fill in the contents of the table row by row, separating columns using the pipe ( | ) symbol.
+
+The following is a table example:
+
+```{r eval=FALSE}
+**Category** | **N**
+:--- | :---:
+Poor sample quality from users/sample variability/limited biological material | 51  
+Lack of well-trained principle investigators and lab members/Poor oversight | 45  
+Poor experimental design: Lack of sufficient replicates/inadequate sample size/lack of adequate controls | 43   
+Inadequate standardization of protocols or guidelines, and data analysis | 43   
+Cost and time | 39   
+Failure to leverage the core’s expertise/following the core’s advice/no consulting beforehand | 23   
+Inadequate documentation of experiments/data management | 19   
+Instruments: maintenance, upgrades, changes | 15   
+Responses that could not be assigned to a category | 11 
+```
+
+**Category** | **N**
+:--- | :---:
+Poor sample quality from users/sample variability/limited biological material | 51  
+Lack of well-trained principle investigators and lab members/Poor oversight | 45  
+Poor experimental design: Lack of sufficient replicates/inadequate sample size/lack of adequate controls | 43   
+Inadequate standardization of protocols or guidelines, and data analysis | 43   
+Cost and time | 39   
+Failure to leverage the core’s expertise/following the core’s advice/no consulting beforehand | 23   
+Inadequate documentation of experiments/data management | 19   
+Instruments: maintenance, upgrades, changes | 15   
+Responses that could not be assigned to a category | 11  
+
+
 
 
 [Eqnarray]: https://www.stat.cmu.edu/~cshalizi/rmarkdown/
